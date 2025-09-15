@@ -300,6 +300,9 @@
          and one pSIM) -->
      <integer name="config_num_physical_slots">2</integer>
 
+    <!-- Charging info current divider, if needed -->
+    <integer name="config_currentInfoDivider" translatable="false">1</integer>
+
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">580</integer>
 

@@ -156,10 +156,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += \
     fastbootd
 
-# Fastcharge
-# PRODUCT_PACKAGES += \
-#     vendor.lineage.fastcharge@1.0-service.8550
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \

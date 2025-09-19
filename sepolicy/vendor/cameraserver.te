@@ -3,3 +3,4 @@ type cameraserver_vendor_prop, file_type;
 allow cameraserver cameraserver_vendor_prop:file read;
 allow cameraserver property_socket:sock_file { write };
 
+allow cameraserver sysfs_torch:file rw_file_perms;

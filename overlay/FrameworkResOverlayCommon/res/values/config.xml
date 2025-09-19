@@ -276,4 +276,13 @@
          0: Left side (default)
          1: Right side -->
     <integer name="config_volumePanelPosPortDefault">1</integer>
+
+    <!-- Smart 5G -->
+    <bool name="config_supportSmart5G">true</bool>
+
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_supportSmartPixels">true</bool>
+
+    <!-- PowerOffAlarmService -->
+    <bool name="config_powerOffAlarmEnabled">true</bool>
 </resources>

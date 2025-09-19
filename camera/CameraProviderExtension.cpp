@@ -40,16 +40,18 @@ bool supportsTorchStrengthControlExt() {
 
 bool supportsSetTorchModeExt() {
     return false;
+}
 
 int32_t getTorchDefaultStrengthLevelExt() {
-    return 7;
+    // Our default value is 75. This corresponds to 15%.
+    // As we have changed the maximum value, 59% now corresponds to 75.
+    return 59;
 }
 
 int32_t getTorchMaxStrengthLevelExt() {
-    // In our device, both LEDs has same maximum value
-    // so get from one.
-    auto node = kTorchLedPath + "/" + TORCH_MAX_BRIGHTNESS;
-    return get(node, 0);
+    // 255 out of 500 is a sane brightness.
+    // Let's cap it to 255 as max, we can go much higher, but I don't want to test this.
+    return 255;
 }
 
 int32_t getTorchStrengthLevelExt() {
@@ -59,10 +61,15 @@ int32_t getTorchStrengthLevelExt() {
     return get(node, 0);
 }
 
-void setTorchStrengthLevelExt(int32_t torchStrength) {
+void setTorchStrengthLevelExt(int32_t torchStrength, bool enabled) {
     set(TOGGLE_SWITCH, 0);
     auto node = kTorchLedPath + "/" + TORCH_BRIGHTNESS;
     set(node, torchStrength);
-    if (torchStrength > 0)
+    if (enabled)
         set(TOGGLE_SWITCH, 255);
+}
+
+void setTorchModeExt(bool enabled) {
+    int32_t strength = getTorchDefaultStrengthLevelExt();
+    setTorchStrengthLevelExt(enabled ? strength : 0, enabled);
 }

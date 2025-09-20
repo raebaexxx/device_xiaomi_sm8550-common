@@ -6,9 +6,6 @@
 
 COMMON_PATH := device/xiaomi/sm8550-common
 
-BOARD_HAVE_BLUETOOTH_QCOM := true
-BLUETOOTH_HCI_USE_MCT := true
-
 # A/B
 AB_OTA_PARTITIONS := \
     boot \

@@ -1865,11 +1865,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal>
-        <name>vendor.xiaomi.hardware.displayfeature</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IDisplayFeature/default</fqname>
-    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.cld</name>
         <version>1.0</version>
@@ -2161,14 +2156,6 @@
         <version>1.0-1</version>
         <interface>
             <name>IMlipayService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.xiaomi.hardware.displayfeature</name>
-        <version>1.0</version>
-        <interface>
-            <name>IDisplayFeature</name>
             <instance>default</instance>
         </interface>
     </hal>

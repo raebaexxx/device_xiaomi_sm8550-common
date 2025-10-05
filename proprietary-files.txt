@@ -42,7 +42,6 @@ vendor/bin/adsprpcd
 vendor/bin/loadalgo
 vendor/etc/init/vendor.qti.adsprpc-guestos-service.rc
 vendor/lib64/libadsp_default_listener.so
-vendor/lib64/vendor.qti.hardware.pal@1.0-impl.so
 vendor/lib64/libadsprpc.so
 vendor/lib64/libloadalgo_stub.so
 
@@ -76,18 +75,13 @@ odm/etc/audio/top_spk_hp.wav
 odm/etc/backend_conf.xml
 odm/etc/init/init.cirrus.rc
 odm/lib64/libaudioroute_ext.so
-odm/lib64/libcrussp.so;DISABLE_CHECKELF
 vendor/etc/audio_diag.cfg
-vendor/etc/card-defs.xml
 vendor/etc/default_volume_tables.xml
 vendor/etc/kvh2xml.xml
-vendor/etc/microphone_characteristics.xml
 vendor/etc/misound_asc_model.tflite
 vendor/etc/models/acd/event.eai
 vendor/etc/models/acd/music.eai
 vendor/etc/models/acd/speech.eai
-vendor/lib64/hw/audio.primary.kalama.so;DISABLE_CHECKELF
-vendor/lib64/hw/gyro_fusion_interface.so
 vendor/etc/seccomp_policy/c2audio.vendor.base-arm64.policy
 vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy
 vendor/lib64/libAlacSwDec.so
@@ -97,7 +91,6 @@ vendor/lib64/libFlacSwDec.so
 vendor/lib64/libPeripheralStateUtils.so
 vendor/lib64/lib_misound_asc.so
 vendor/lib64/libadm.so
-vendor/lib64/libar-pal.so;DISABLE_CHECKELF
 vendor/lib64/libaudio_log_utils.so
 vendor/lib64/libaudiocloudctrl.so
 vendor/lib64/libcapiv2svacnnvendor.so
@@ -105,21 +98,17 @@ vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2udk7vendor.so
 vendor/lib64/libcapiv2uvvendor.so
 vendor/lib64/libdsd2pcm.so
-vendor/lib64/hw/sound_trigger.primary.kalama.so
-vendor/etc/vintf/manifest/manifest_non_qmaa_extn.xml
-vendor/etc/vintf/manifest/manifest_non_qmaa.xml
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
 vendor/lib64/libfcsam.so;FIX_SONAME
 vendor/lib64/libkaraokepal.so;DISABLE_CHECKELF
 vendor/lib64/liblistensoundmodel2vendor.so
-vendor/lib64/libagm.so;DISABLE_CHECKELF
 vendor/lib64/libmcs.so;DISABLE_CHECKELF
 vendor/lib64/libmiam.so;FIX_SONAME
 vendor/lib64/libmisfpsop.so
 vendor/lib64/libmisoundsa.so
 vendor/lib64/libmispowerop.so
-vendor/lib64/libqtigefar.so
+vendor/lib64/libqtigefar.so;DISABLE_CHECKELF
 vendor/lib64/libresampler.so
 vendor/lib64/libspatializerparamstorage.so
 vendor/lib64/libvui_dmgr.so

@@ -76,6 +76,15 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/qcril_database/upgrade/config/6.0_config.sql' : blob_fixup()
         .regex_replace('(persist\\.vendor\\.radio\\.redir_party_num.*)true', '\\1false'),
     (
+        'odm/lib64/libaudioroute_ext.so',
+        'vendor/lib64/libar-pal.so',
+        'vendor/lib64/libagm.so',
+    ): blob_fixup()
+        .replace_needed(
+            'libaudioroute.so',
+            'libaudioroute-v34.so',
+        ),
+    (
         'vendor/lib64/c2.dolby.hevc.dec.so',
         'vendor/lib64/c2.dolby.hevc.enc.so',
         'vendor/lib64/c2.dolby.hevc.sec.dec.so',

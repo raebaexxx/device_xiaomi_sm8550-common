@@ -111,6 +111,7 @@ vendor/etc/vintf/manifest/manifest_non_qmaa.xml
 vendor/lib64/libeai_fixed.so
 vendor/lib64/libeai_float.so
 vendor/lib64/libfcsam.so;FIX_SONAME
+vendor/lib64/libkaraokepal.so;DISABLE_CHECKELF
 vendor/lib64/liblistensoundmodel2vendor.so
 vendor/lib64/libagm.so;DISABLE_CHECKELF
 vendor/lib64/libmcs.so;DISABLE_CHECKELF

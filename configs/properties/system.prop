@@ -24,9 +24,6 @@ ro.hwui.text_large_cache_height=1024
 debug.hwui.skia_atrace_enabled=false
 
 # IMS
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.dbg.wfc_avail_ovr=1
 persist.data.df.iwlan_mux=9
 ro.vendor.use_data_netmgrd=true
 

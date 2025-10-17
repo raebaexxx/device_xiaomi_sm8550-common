@@ -23,6 +23,14 @@ ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=1024
 debug.hwui.skia_atrace_enabled=false
 
+# RIL Powersaving
+persist.radio.add_power_save=1 
+pm.sleep_mode=1 
+ro.ril.disable.power.collapse=0
+ro.ril.fast.dormancy.rule=1 
+ro.ril.fast.dormancy.timeout=3
+ro.mot.eri.losalert.delay=1000
+
 # IMS
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1

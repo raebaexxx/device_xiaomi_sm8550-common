@@ -14,6 +14,7 @@ persist.vendor.aiie_capture_log.debug   u:object_r:vendor_camera_sensor_prop:s0
 
 # Fingerprint
 sys.fp.miui.token                       u:object_r:exported_system_prop:s0
+sys.panel.                              u:object_r:vendor_fp_prop:s0
 
 # Hardware
 ro.hardware.chipname                    u:object_r:exported_default_prop:s0

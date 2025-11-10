@@ -98,20 +98,7 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/bin/hw/vendor.dolby.media.c2@1.0-service', 
         'vendor/bin/hw/dolbycodec2',
     ): blob_fixup()
-        .add_needed('libshim_dolby.so'),    
-    (
-        'vendor/etc/media_codecs_kalama.xml',
-        'vendor/etc/media_codecs_kalama_vendor.xml',
-    ): blob_fixup()
-        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
-    (
-        'odm/lib64/libcamxcommonutils.so',
-        'odm/lib64/hw/com.qti.chi.override.so',
-        'odm/lib64/hw/camera.xiaomi.so',
-        'odm/lib64/libchifeature2.so',
-        'odm/lib64/libmialgoengine.so'
-    ): blob_fixup()
-        .add_needed('libprocessgroup_shim.so'),
+        .add_needed('libshim_dolby.so'),
     (
         'vendor/lib64/libstfactory-vendor.so',
         'odm/lib64/nfc_nci.nqx.default.hw.so'

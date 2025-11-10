@@ -23,9 +23,6 @@
     <!-- Doze: does this device support STATE_DOZE?  -->
     <bool name="doze_display_state_supported">true</bool>
 
-    <!-- Color of the UDFPS pressed view -->
-    <color name="config_udfpsColor">#00FFFFFF</color>
-
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">1000</integer>
 </resources>

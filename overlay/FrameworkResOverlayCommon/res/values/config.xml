@@ -286,6 +286,11 @@
     <!-- Whether to enable fingerprint unlock when screen turns off on udfps devices -->
     <bool name="config_screen_off_udfps_enabled">true</bool>
 
+    <!-- Pocket Lock -->
+    <bool name="config_pocketModeSupported">true</bool>
+    <string name="config_pocketJudgeVendorSensorName">xiaomi.sensor.nonui</string>
+    <item name="config_pocketJudgeVendorSensorValue" format="float" type="dimen">2.0</item>
+
     <!-- The default intensity level for haptic feedback. See
          Settings.System.HAPTIC_FEEDBACK_INTENSITY more details on the constant values and
          meanings. -->

@@ -194,12 +194,6 @@ persist.vendor.camera.logLevel=0
 persist.vendor.camera.sensor=0
 
 # Dalvik
-dalvik.vm.heapstartsize=16m
-dalvik.vm.heapgrowthlimit=256m
-dalvik.vm.heapsize=512m
-dalvik.vm.heaptargetutilization=0.5
-dalvik.vm.heapminfree=8m
-dalvik.vm.heapmaxfree=32m
 persist.sys.dalvik.vm.lib.2=libart.so
 
 # Display

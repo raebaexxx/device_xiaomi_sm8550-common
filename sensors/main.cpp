@@ -9,7 +9,10 @@
 #include <android-base/logging.h>
 
 #include "NonUiNotifier.h"
+<<<<<<< HEAD
 #include "AodNotifier.h"
+=======
+>>>>>>> eeabe88 (sm8550-common: sensors: introduce sensor-notifier for nonui handling)
 
 int main() {
     sp<ISensorManager> manager = ISensorManager::getService();
@@ -18,9 +21,12 @@ int main() {
         return EXIT_FAILURE;
     }
 
+<<<<<<< HEAD
     std::unique_ptr<AodNotifier> aodNotifier = std::make_unique<AodNotifier>(manager);
     aodNotifier->activate();
     
+=======
+>>>>>>> eeabe88 (sm8550-common: sensors: introduce sensor-notifier for nonui handling)
     std::unique_ptr<NonUiNotifier> nonUiNotifier = std::make_unique<NonUiNotifier>(manager);
     nonUiNotifier->activate();
 

@@ -79,7 +79,7 @@ struct disp_base displayBasePrimary = {
 
 }  // anonymous namespace
 
-class XiaomiSm8550UdfpsHandler : public UdfpsHandler {
+class XiaomiSM8550UdfpsHandler : public UdfpsHandler {
   public:
     void init(fingerprint_device_t* device) {
         mDevice = device;
@@ -143,6 +143,7 @@ class XiaomiSm8550UdfpsHandler : public UdfpsHandler {
     }
 
     void onFingerDown(uint32_t x, uint32_t y, float /*minor*/, float /*major*/) {
+        if (mAuthSuccess) return;
         LOG(DEBUG) << __func__ << "x: " << x << ", y: " << y;
 
         mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_X, x);
@@ -206,7 +207,14 @@ class XiaomiSm8550UdfpsHandler : public UdfpsHandler {
         }
     }
 
-    void onAuthenticationSucceeded() { onFingerUp(); }
+    void onAuthenticationSucceeded() {
+        mAuthSuccess = true;
+        onFingerUp();
+        std::thread([this]() {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            mAuthSuccess = false;
+        }).detach();
+    }
 
     void onAuthenticationFailed() { onFingerUp(); }
 
@@ -214,10 +222,11 @@ class XiaomiSm8550UdfpsHandler : public UdfpsHandler {
     fingerprint_device_t* mDevice;
     android::base::unique_fd disp_fd_;
     android::base::unique_fd touch_fd_;
+    bool mAuthSuccess = false;
 };
 
 static UdfpsHandler* create() {
-    return new XiaomiSm8550UdfpsHandler();
+    return new XiaomiSM8550UdfpsHandler();
 }
 
 static void destroy(UdfpsHandler* handler) {

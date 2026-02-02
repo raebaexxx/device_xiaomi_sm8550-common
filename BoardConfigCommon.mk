@@ -203,7 +203,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifest.xml
 DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/configs/vintf/manifest_kalama.xml \
-    $(COMMON_PATH)/configs/vintf/manifest_socrates.xml
+    $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml
 
 # Vendor security patch
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)

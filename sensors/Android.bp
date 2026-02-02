@@ -11,10 +11,7 @@ cc_binary {
     init_rc: ["sensor-notifier.rc"],
 
     srcs: [
-<<<<<<< HEAD
         "AodNotifier.cpp",
-=======
->>>>>>> eeabe88 (sm8550-common: sensors: introduce sensor-notifier for nonui handling)
         "NonUiNotifier.cpp",
         "SensorNotifier.cpp",
         "SensorNotifierUtils.cpp",

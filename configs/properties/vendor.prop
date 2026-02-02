@@ -284,6 +284,9 @@ persist.mm.enable.prefetch=true
 # Keyguard
 keyguard.no_require_sim=true
 
+# Keystore
+ro.hardware.keystore_desede=true
+
 # Media
 debug.stagefright.c2inputsurface=-1
 debug.c2.use_dmabufheaps=1

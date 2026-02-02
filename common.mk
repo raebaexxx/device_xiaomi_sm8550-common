@@ -408,6 +408,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libui-v34
 
+PRODUCT_COPY_FILES += \
+    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \

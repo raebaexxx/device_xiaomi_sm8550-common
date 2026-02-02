@@ -319,16 +319,8 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.xiaomi-multihal \
-<<<<<<< HEAD
     sensors.dynamic_sensor_hal
-=======
-    sensors.dynamic_sensor_hal \
     sensor-notifier \
-    sensors.xiaomi.v2
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_ODM)/etc/sensors/hals.conf
->>>>>>> eeabe88 (sm8550-common: sensors: introduce sensor-notifier for nonui handling)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.dynamic.head_tracker.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/sku_kalama/android.hardware.sensor.dynamic.head_tracker.xml \

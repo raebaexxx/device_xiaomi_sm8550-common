@@ -323,6 +323,11 @@ persist.vendor.radio.enableadvancedscan=true
 # RCS
 persist.vendor.rcs.singlereg.feature=1
 
+# Sensors
+ro.vendor.sensors.xiaomi.double_tap=true
+ro.vendor.sensors.xiaomi.single_tap=true
+ro.vendor.sensors.xiaomi.udfps=true
+
 # USB
 vendor.usb.rndis.func.name=gsi
 vendor.usb.rmnet.func.name=gsi

@@ -1,5 +1,7 @@
+set_prop(vendor_init, audio_prop)
 set_prop(vendor_init, vendor_nfc_mi_prop)
 set_prop(vendor_init, vendor_fp_prop)
+set_prop(vendor_init, vendor_qcc_prop)
 set_prop(vendor_init, vendor_zram_prop);
 
 # Allow vendor_init to set thermal prop

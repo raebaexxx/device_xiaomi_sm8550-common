@@ -54,24 +54,12 @@
     <string name="auto_hbm_disable_time_title">Disable time</string>
     <string name="auto_hbm_disable_time_summary">Duration in seconds for which HBM is deactivated if the light threshold falls below the set level</string>   
 
-     <!-- Thermal Profiles -->
-    <string name="thermal_title">Per-App Thermal Profile</string>
-    <string name="thermal_enable">Use Per-app thermal profiles</string>
-    <string name="thermal_summary">Adjust per-app thermal profiles for optimum performance</string>
-    <string name="thermal_default">Default</string>
-    <string name="thermal_benchmark">Benchmark</string>
-    <string name="thermal_browser">Browser</string>
-    <string name="thermal_camera">Camera</string>
-    <string name="thermal_dialer">Dialer</string>
-    <string name="thermal_gaming">Gaming</string>
-    <string name="thermal_navigation">Navigation</string>
-    <string name="thermal_streaming">Streaming</string>
-    <string name="thermal_video">Video</string>
-
-    <!-- Thermal Tile Strings -->
-    <string name="thermal_tile_label">Per-App Thermal Profile</string>
-    <string name="thermal_tile_enabled_subtitle">Enabled</string>
-    <string name="thermal_tile_disabled_subtitle">Disabled</string>
+     <!-- Thermal Profile -->
+    <string name="thermalprofile_title">Thermal profile</string>
+    <string name="thermalprofile_default">Default</string>
+    <string name="thermalprofile_game">Game</string>
+    <string name="thermalprofile_battery">Battery</string>
+    <string name="thermalprofile_unknown">Unknown</string>
 
     <!-- Zram Settings -->
     <string name="zram_size_title">ZRAM size</string>
@@ -92,45 +80,14 @@
     <string name="zram_change_failed">Failed to apply ZRAM settings</string>
     <string name="advanced_settings">Advanced settings</string>
 
-    <!-- HyperCharge Strings -->
-    <string name="hypercharge_title">120W HyperCharge</string>
-    <string name="hypercharge_on">HyperCharge On</string>
-    <string name="hypercharge_off">HyperCharge Off (Limited)</string>
-    <string name="hypercharge_main_switch_title">Enable 120W HyperCharge</string>
-    <string name="hypercharge_description_title">About this feature</string>
-    <string name="hypercharge_description_summary">"When enabled, your device will charge at its maximum 120W speed. When disabled, the charging speed will be limited to a standard rate to reduce heat and potentially prolong long-term battery health. By default, HyperCharge is ON."</string>
-
-    <!-- Power Profile -->
-    <string name="powerprofile_tile_label">Power Profile</string>
-    <string name="configure_gpu">Configure GPU Frequency</string>
-    <string name="powerprofile_mode_balance">Balanced</string>
-    <string name="powerprofile_mode_performance">Performance</string>
-    <string name="powerprofile_mode_battery_saver">Battery Saver</string>
-    <string name="powerprofile_mode_gaming">Gaming</string>
-    <string name="powerprofile_mode_unknown">Unknown Mode</string>
-    <string name="powerprofile_tile_disabled_subtitle">Disabled (Per-app thermal profiles enabled)</string>
-    <string name="gaming_mode_title">Game Boost</string>
-    <string name="gaming_mode_notification">Game Boost Mode is now activated for optimal gaming performance.</string>
-    <string name="power_profile_footer_summary">Note: Higher frequencies (e.g., GPU over 900MHz and prime core higher clock) are available only in Game Boost mode.</string>
-    <string name="perf_mode_title">High Performance Mode</string>
-    <string name="perf_mode_notification">High Performance Mode is now activated for enhanced performance.</string>
-
-    <!-- Powertools Main Title -->
-    <string name="Powertools_title">Powertools</string>
-    <string name="Powertools_summary">Customize power profiles, CPU/GPU frequencies, and governor settings for optimized performance and efficiency</string>
-    <string name="power_profile_mode_title">Power Mode</string>
-
-    <!-- GPU -->
-    <string name="gpu_optimizer_title">GPU Optimizer</string>
-    <string name="gpu_optimizer_summary">Enable GPU performance tuning</string>
-    <string name="gpu_min_frequency">GPU Minimum Frequency</string>
-    <string name="gpu_max_frequency">GPU Maximum Frequency</string>
-    <string name="cpu_optimizer_title">CPU Optimizer</string>
-    <string name="cpu_optimizer_summary">Enable CPU performance tuning</string>
-    <string name="cpu_little_cluster_title">Little Cluster</string>
-    <string name="cpu_big_cluster_title">Big Cluster</string>
-    <string name="cpu_prime_cluster_title">Prime Cluster</string>
-    <string name="min_frequency_title">Min Frequency</string>
-    <string name="max_frequency_title">Max Frequency</string>
-    <string name="governor_title">Governor</string>
+    <!-- ESIM -->
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">Enable eSIM</string>
+    <string name="esim_summary_enabled">Enabled</string>
+    <string name="esim_summary_disabled">Disabled</string>
+    <string name="esim_summary_unsupported">eSIM is not supported on this device</string>
+    <string name="esim_warning_title">eSIM in use</string>
+    <string name="esim_warning_message">Please disable or remove your current eSIM profile before proceeding</string>
+    <string name="esim_footer_note">Enabling eSIM will disable the second physical SIM slot</string>
+    <string name="esim_footer_note_unsupported">This device does not support eSIM functionality</string>
 </resources>

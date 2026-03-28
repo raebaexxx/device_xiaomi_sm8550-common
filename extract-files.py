@@ -39,6 +39,10 @@ lib_fixups: lib_fixups_user_type = {
     libs_clang_rt_ubsan: lib_fixup_remove_arch_suffix,
     libs_proto_3_9_1: lib_fixup_vendorcompat,
     (
+        'vendor.qti.hardware.qccsyshal@1.0',
+        'vendor.qti.hardware.qccsyshal@1.1',
+        'vendor.qti.hardware.qccsyshal@1.2',
+        'vendor.qti.hardware.qccvndhal@1.0',
         'vendor.qti.imsrtpservice@3.0',
         'vendor.qti.imsrtpservice@3.1',
         'vendor.qti.diaghal@1.0',
@@ -46,6 +50,8 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
+    'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so' : blob_fixup()
+        .replace_needed('libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-21.7.so'),
     'odm/lib64/libmt@1.3.so' : blob_fixup()
         .replace_needed('libcrypto.so', 'libcrypto-v33.so'),
     ('vendor/bin/hw/android.hardware.security.keymint-service-qti',
@@ -55,15 +61,6 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('pipe2: 1'),
     'vendor/etc/qcril_database/upgrade/config/6.0_config.sql' : blob_fixup()
         .regex_replace('(persist\\.vendor\\.radio\\.redir_party_num.*)true', '\\1false'),
-    (
-        'odm/lib64/libaudioroute_ext.so',
-        'vendor/lib64/libar-pal.so',
-        'vendor/lib64/libagm.so',
-    ): blob_fixup()
-        .replace_needed(
-            'libaudioroute.so',
-            'libaudioroute-v34.so',
-        ),
     (
         'vendor/lib64/c2.dolby.hevc.dec.so',
         'vendor/lib64/c2.dolby.hevc.enc.so',
@@ -77,28 +74,26 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libswspatializer_ext.so',
         'vendor/lib64/soundfx/libdlbvol.so',
         'vendor/lib64/soundfx/libhwdap.so',
+        'vendor/lib64/soundfx/libmisoundfx.so',
         'vendor/lib64/soundfx/libswspatializer.so',
     ): blob_fixup()
         .replace_needed(
             'libstagefright_foundation.so',
             'libstagefright_foundation-v33.so',
         ),
-    'vendor/lib64/c2.dolby.client.so' : blob_fixup()
-        .add_needed('libcodec2_hidl_shim.so'),
-    'vendor/lib64/libqcodec2_core.so' : blob_fixup()
-        .add_needed('libcodec2_shim.so'),
-    'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
-        .add_needed('libhidlbase_shim.so'),
-    (
-        'vendor/lib64/libqms_xiaomi.so',
-    ): blob_fixup()
-        .add_needed('libbinder_shim.so'),
     (
         'vendor/bin/hw/vendor.dolby.media.c2@1.0-service', 
         'vendor/bin/hw/dolbycodec2',
     ): blob_fixup()
         .add_needed('libshim_dolby.so'),
+    'vendor/lib64/c2.dolby.client.so' : blob_fixup()
+        .add_needed('libcodec2_hidl_shim.so'),
+    'vendor/lib64/libqcodec2_core.so' : blob_fixup()
+        .add_needed('libcodec2_shim.so'),
+    'vendor/lib64/vendor.libdpmframework.so' : blob_fixup()
+        .add_needed('libhidlbase_shim.so'),
     (
+        'vendor/bin/hw/android.hardware.contexthub-service.qmi',
         'vendor/lib64/libstfactory-vendor.so',
         'odm/lib64/nfc_nci.nqx.default.hw.so'
     ): blob_fixup()
@@ -110,7 +105,18 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
     'vendor/etc/ueventd.rc' : blob_fixup()
-        .add_line_if_missing('\n# Charger\n/sys/class/qcom-battery     night_charging            0660    system  system')
+        .add_line_if_missing('\n# Charger\n/sys/class/qcom-battery     night_charging            0660    system  system'),
+    (
+        'vendor/bin/poweropt-service',
+        'vendor/lib64/libaodoptfeature.so',
+        'vendor/lib64/libdpps.so',
+        'vendor/lib64/libpowercore.so',
+        'vendor/lib64/libpsmoptfeature.so',
+        'vendor/lib64/libsnapdragoncolor-manager.so',
+        'vendor/lib64/libstandbyfeature.so',
+        'vendor/lib64/libvideooptfeature.so',
+    ): blob_fixup()
+        .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
@@ -119,7 +125,6 @@ module = ExtractUtilsModule(
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
-    check_elf=True,
 )
 
 if __name__ == '__main__':

@@ -26,12 +26,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Indicate available ColorDisplayManager.COLOR_MODE_xxx. -->
     <integer-array name="config_availableColorModes">
-        <item>258</item> <!-- vivid -->
-        <item>256</item> <!-- saturated -->
-        <item>257</item> <!-- original -->
-        <item>268</item> <!-- p3 -->
-        <item>267</item> <!-- srgb -->
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
     </integer-array>
+
+    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
+    <integer name="config_shutdownBatteryTemperature">580</integer>
 
     <!-- Configure mobile tcp buffer sizes in the form:
         rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
@@ -111,6 +112,11 @@
     <!-- Flag specifying whether WFC over IMS is available on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
 
+    <!-- Enables or disables haptic effect when the text insertion/selection handle is moved
+         manually by the user. Off by default, since the expected haptic feedback may not be
+         available on some devices. -->
+    <bool name="config_enableHapticTextHandle">true</bool>
+
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
@@ -132,21 +138,6 @@
 
     <!-- Whether the device enable the standalone (SA) mode of 5G NR.-->
     <bool name="config_telephony5gStandalone">true</bool>
-
-    <!-- Whether to adopt the predefined handover policies for IWLAN.
-        {@see CarrierConfigManager#KEY_IWLAN_HANDOVER_POLICY_STRING_ARRAY}
-    -->
-    <bool name="config_enable_iwlan_handover_policy">false</bool>
-
-    <!-- Whether enhanced IWLAN handover check is enabled. If enabled, telephony frameworks
-        will not perform handover if the target transport is out of service, or VoPS not
-        supported. The network will be torn down on the source transport, and will be
-        re-established on the target transport when condition is allowed for bringing up a
-        new network. -->
-    <bool name="config_enhanced_iwlan_handover_check">false</bool>
-
-    <!-- Support decoding of GSM 8 bit encoded SMS-->
-    <bool translatable="false" name="config_sms_decode_gsm_8bit_data">true</bool>
 
     <!-- Whether the device enable the non-standalone (NSA) mode of 5G NR.-->
     <bool name="config_telephony5gNonStandalone">true</bool>
@@ -269,27 +260,8 @@
     -->
     <bool name="config_enableWifiDisplay">true</bool>
 
-    <!-- Package names to use with vendor iwlan implementation. -->
-    <string name="config_wlan_data_service_package" translatable="false">vendor.qti.iwlan</string>
-    <string name="config_wlan_network_service_package" translatable="false">vendor.qti.iwlan</string>
-    <string name="config_qualified_networks_service_package" translatable="false">vendor.qti.iwlan</string>
-
-    <!-- Default component for QR code scanner -->
-    <string name="config_defaultQrCodeComponent" translatable="false">com.android.camera/com.android.camera.Camera</string>
-
     <!-- Doze: should the TYPE_PICK_UP_GESTURE sensor be used as a pulse signal. -->
     <bool name="config_dozePulsePickup">true</bool>
-
-    <!-- Whether devices suports in-display fingerprint when screen is off -->
-    <bool name="config_supportScreenOffUdfps">true</bool>
-
-    <!-- Whether to enable fingerprint unlock when screen turns off on udfps devices -->
-    <bool name="config_screen_off_udfps_enabled">true</bool>
-
-    <!-- Pocket Lock -->
-    <bool name="config_pocketModeSupported">true</bool>
-    <string name="config_pocketJudgeVendorSensorName">xiaomi.sensor.nonui</string>
-    <item name="config_pocketJudgeVendorSensorValue" format="float" type="dimen">2.0</item>
 
     <!-- The default intensity level for haptic feedback. See
          Settings.System.HAPTIC_FEEDBACK_INTENSITY more details on the constant values and
@@ -306,12 +278,12 @@
          meanings. -->
     <integer name="config_defaultRingVibrationIntensity">3</integer>
 
-    <!-- Number of physical SIM slots on the device. This includes both eSIM and pSIM slots, andMore actions
+    <!-- Number of physical SIM slots on the device. This includes both eSIM and pSIM slots, and
          is not necessarily the same as the number of phones/logical modems supported by the device.
          For example, a multi-sim device can have 2 phones/logical modems, but 3 physical slots,
          or a single SIM device can have 1 phones/logical modems, but 2 physical slots (one eSIM
          and one pSIM) -->
-     <integer name="config_num_physical_slots">2</integer>
+    <integer name="config_num_physical_slots">2</integer>
 
     <!-- Type of the tap sensor. Empty if tap is not supported. -->
     <string name="config_dozeTapSensorType">org.lineageos.sensor.single_tap</string>
@@ -325,35 +297,21 @@
     <!-- Charging info current divider, if needed -->
     <integer name="config_currentInfoDivider" translatable="false">1</integer>
 
-    <!-- The list of components which should be automatically disabled for a specific package. -->
-    <string-array name="config_disabledComponents" translatable="false">
-        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
-        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
-    </string-array>
+    <!-- Whether to enable fingerprint unlock when screen turns off on udfps devices -->
+    <bool name="config_screen_off_udfps_enabled">true</bool>
 
-    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
-    <integer name="config_shutdownBatteryTemperature">580</integer>
-
-    <!-- Default volume panel position in portrait mode
-         0: Left side (default)
-         1: Right side -->
-    <integer name="config_volumePanelPosPortDefault">1</integer>
-
-    <!-- Smart 5G -->
-    <bool name="config_supportSmart5G">true</bool>
-
-    <!-- Whether the device supports Smart Pixels -->
-    <bool name="config_supportSmartPixels">true</bool>
+    <!-- SystemInfo Sys Nodes -->
+    <integer name="config_sysCPUTempMultiplier">1000</integer>
 
     <!-- PowerOffAlarmService -->
     <bool name="config_powerOffAlarmEnabled">true</bool>
+
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_supportSmartPixels">true</bool>
 
     <!-- Whether device has turbo power charging support -->
     <bool name="config_hasTurboPowerCharger">true</bool>
 
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/qcom-battery/fastchg_mode</string>
-
-    <!--Useful if you want to improve signal reception -->
-    <bool name="config_ignoreRssnrSignalLevel">true</bool>
 </resources>

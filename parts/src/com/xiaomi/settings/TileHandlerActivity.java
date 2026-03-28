@@ -32,12 +32,6 @@ import com.xiaomi.settings.autohbm.AutoHbmActivity;
 import com.xiaomi.settings.autohbm.AutoHbmTileService;
 import com.xiaomi.settings.autohbm.HbmTileService;
 
-import com.xiaomi.settings.hypercharge.HyperChargeTileService;
-import com.xiaomi.settings.hypercharge.HyperChargeSettingsActivity;
-
-import com.xiaomi.settings.powertools.PowerProfileTileService;
-import com.xiaomi.settings.powertools.PowertoolsActivity;
-
 public final class TileHandlerActivity extends Activity {
     private static final String TAG = "TileHandlerActivity";
 
@@ -47,8 +41,6 @@ public final class TileHandlerActivity extends Activity {
     static {
         TILE_ACTIVITY_MAP.put(AutoHbmTileService.class.getName(), AutoHbmActivity.class);
         TILE_ACTIVITY_MAP.put(HbmTileService.class.getName(), AutoHbmActivity.class);
-        TILE_ACTIVITY_MAP.put(HyperChargeTileService.class.getName(), HyperChargeSettingsActivity.class);
-        TILE_ACTIVITY_MAP.put(PowerProfileTileService.class.getName(), PowertoolsActivity.class);
     }
 
     @Override

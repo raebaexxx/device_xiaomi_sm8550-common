@@ -34,22 +34,22 @@
     <string name="custom_seekbar_default_value_is_set">Đã đặt giá trị mặc định</string>
     <!-- Auto hbm -->
     <string name="auto_hbm_title">Độ sáng cao tự động</string>
-    <string name="auto_hbm_main_switch_title">Sử dụng HBM tự động</string>
-    <string name="tile_auto_hbm">Tự động bật HBM</string>
+    <string name="auto_hbm_main_switch_title">Sử dụng độ sáng cao tự động</string>
+    <string name="tile_auto_hbm">Tự động bật độ sáng cao</string>
     <string name="tile_hbm_on">Đã bật</string>
     <string name="tile_hbm_off">Đã tắt</string>
-    <string name="tile_hbm">Độ Sáng Cao</string>
-    <string name="tile_hbm_unavailable">HBM Không có sẵn</string>
-    <string name="tile_auto_hbm_or_brightness_enabled">Tự động HBM hoặc Độ sáng tự động được bật</string>
+    <string name="tile_hbm">Độ sáng cao</string>
+    <string name="tile_hbm_unavailable">Độ sáng cao không có sẵn</string>
+    <string name="tile_auto_hbm_or_brightness_enabled">Độ sáng cao tự động hoặc Độ sáng tự động được bật</string>
     <string name="hbm_mode_title">Độ sáng cao</string>
     <string name="hbm_mode_notification">Chế độ Độ sáng cao hiện đã được kích hoạt. Sử dụng trong thời gian dài có thể làm hỏng màn hình của bạn.</string>
     <string name="auto_hbm_summary">Tự động kích hoạt chế độ độ sáng cao dựa vào cường độ ánh sáng xung quanh (lux)</string>
     <string name="auto_hbm_threshold_title">Ngưỡng ánh sáng</string>
-    <string name="auto_hbm_threshold_summary">Định ngưỡng mức ánh sáng để HBM được kích hoạt</string>
+    <string name="auto_hbm_threshold_summary">Định ngưỡng mức ánh sáng để độ sáng cao được kích hoạt</string>
     <string name="auto_hbm_enable_time_title">Thời gian bật</string>
-    <string name="auto_hbm_enable_time_summary">Thời gian tính bằng giây mà ngưỡng ánh sáng đạt mức để kích hoạt HBM</string>
+    <string name="auto_hbm_enable_time_summary">Thời gian tính bằng giây mà ngưỡng ánh sáng đạt mức để kích hoạt độ sáng cao</string>
     <string name="auto_hbm_disable_time_title">Thời gian tắt</string>
-    <string name="auto_hbm_disable_time_summary">Thời gian tính bằng giây mà ngưỡng ánh sáng dưới mức để kích hoạt HBM</string>
+    <string name="auto_hbm_disable_time_summary">Thời gian tính bằng giây mà ngưỡng ánh sáng dưới mức để kích hoạt độ sáng cao</string>
     <!-- Thermal Profile -->
     <string name="thermalprofile_title">Cấu hình hiệu năng</string>
     <string name="thermalprofile_default">Mặc định</string>
@@ -74,4 +74,14 @@
     <string name="swappiness_value">%1$d</string>
     <string name="zram_change_failed">Không áp dụng cài đặt ZRAM</string>
     <string name="advanced_settings">Cài đặt nâng cao</string>
+    <!-- ESIM -->
+    <string name="esim_title">eSIM</string>
+    <string name="esim_enable_name">Bật eSIM</string>
+    <string name="esim_summary_enabled">Đã bật</string>
+    <string name="esim_summary_disabled">Đã tắt</string>
+    <string name="esim_summary_unsupported">eSIM không được hỗ trợ trên thiết bị này</string>
+    <string name="esim_warning_title">eSIM đang sử dụng</string>
+    <string name="esim_warning_message">Vui lòng tắt hoặc xóa hồ sơ eSIM hiện tại của bạn trước khi tiến hành</string>
+    <string name="esim_footer_note">Kích hoạt eSIM sẽ vô hiệu hóa khe SIM vật lý thứ hai</string>
+    <string name="esim_footer_note_unsupported">Thiết bị này không hỗ trợ chức năng eSIM</string>
 </resources>

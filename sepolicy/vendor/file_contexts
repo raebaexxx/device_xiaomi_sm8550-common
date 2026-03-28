@@ -1,5 +1,6 @@
 # Batterysecret
 /vendor/bin/batterysecret u:object_r:batterysecret_exec:s0
+/sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role u:object_r:vendor_sysfs_usb_supply:s0
 
 # Camera
 /odm/bin/hw/vendor\.qti\.camera\.provider-service_64                                                u:object_r:hal_camera_default_exec:s0
@@ -20,6 +21,15 @@
 /dev/mi_display/disp_feature u:object_r:vendor_displayfeature_device:s0
 /sys/devices/virtual/mi_display/disp_feature/disp-DSI-+[0-1](/.*)? u:object_r:vendor_sysfs_displayfeature:s0
 
+# Dolby audio
+/(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service   u:object_r:hal_dms_default_exec:s0
+/vendor/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service                   u:object_r:hal_dms_default_exec:s0
+/vendor/bin/hw/dolbycodec2                                                 u:object_r:vendorcodec_exec:s0
+/vendor/bin/hw/vendor\.dolby\.media\.c2@1\.0-service                       u:object_r:mediacodec_exec:s0
+
+# Dolby Data
+/data/vendor/dolby(/.*)?                                                   u:object_r:vendor_data_file:s0
+
 # Dumpstate
 /vendor/bin/hw/android\.hardware\.dumpstate-service.xiaomi u:object_r:hal_dumpstate_impl_exec:s0
 
@@ -35,36 +45,16 @@
 # IR
 /dev/ir_spi u:object_r:ir_spi_device:s0
 
-#Dolby Data Files
-/data/vendor/dolby(/.*)?                    u:object_r:vendor_data_file:s0
-
-# Media
-/(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service   u:object_r:hal_dms_default_exec:s0
-/vendor/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service                   u:object_r:hal_dms_default_exec:s0
-/vendor/bin/hw/dolbycodec2                                                 u:object_r:vendorcodec_exec:s0
-/vendor/bin/hw/vendor\.dolby\.media\.c2@1\.0-service                       u:object_r:mediacodec_exec:s0
-
-# MiCharge
-/(vendor|system/vendor)/bin/hw/vendor\.xiaomi\.hardware\.micharge@1\.0-service u:object_r:vendor_hal_micharge_xiaomi_default_exec:s0
-
-# Ril
-/dev/smd8                                         u:object_r:vendor_radio_smd_device:s0
-
 # NFC
 /odm/bin/hw/vendor\.nxp\.hardware\.nfc@2\.0-service u:object_r:hal_nfc_default_exec:s0
 
-# Touchscreen
-/sys/devices/platform/goodix_ts.0(/.*)? u:object_r:sysfs_goodix_touch:s0
-
 # Sensors HAL
 /vendor/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal      u:object_r:hal_sensors_default_exec:s0
-/(vendor|system/vendor)/bin/sensor-notifier u:object_r:vendor_sensor_notifier_exec:s0
-/(vendor|system/vendor|odm|vendor/odm)/bin/hw/vendor.xiaomi.sensor.citsensorservice@1.1-service u:object_r:vendor_hal_citsensorservice_xiaomi_default_exec:s0
-/(vendor|system/vendor|odm|vendor/odm)/bin/hw/vendor.xiaomi.sensor.citsensorservice@2.0-service u:object_r:vendor_hal_citsensorservice_xiaomi_default_exec:s0
-/(vendor|system/vendor|odm|vendor/odm)/bin/hw/vendor.xiaomi.sensor.communicate@1.0-service u:object_r:vendor_hal_sensorcommunicate_default_exec:s0
 
-# Persist subsystem
-/mnt/vendor/persist/subsys(/.*)?            u:object_r:persist_subsys_file:s0
+# Touchscreen
+/dev/xiaomi-touch u:object_r:touchfeature_device:s0
+/vendor/bin/hw/vendor\.lineage\.touch-service\.xiaomi u:object_r:hal_lineage_touch_default_exec:s0
+/sys/devices/platform/goodix_ts.0(/.*)? u:object_r:sysfs_goodix_touch:s0
 
 # Thermal
 /vendor/bin/mi_thermald u:object_r:mi_thermald_exec:s0

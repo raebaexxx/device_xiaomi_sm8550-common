@@ -18,38 +18,18 @@ vendor.panel.display                            u:object_r:vendor_camera_prop:s0
 vendor.vidhance.preview.vs.cropfactor           u:object_r:vendor_camera_prop:s0
 vendor.vidhance.video.vs.cropfactor             u:object_r:vendor_camera_prop:s0
 
-# Fastcharge HAL
-persist.vendor.sec.fastchg_enabled              u:object_r:vendor_fastcharge_prop:s0
+# NFC
+ro.vendor.nfc. u:object_r:vendor_nfc_mi_prop:s0
+ro.vendor.se. u:object_r:vendor_nfc_mi_prop:s0
 
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
 persist.vendor.sys.fp.      u:object_r:vendor_fp_prop:s0
 
 # Thermal
-vendor.sys.thermal.                             u:object_r:vendor_thermal_normal_prop:s0
-
-# Ril
-persist.vendor.radio.imei                       u:object_r:vendor_radio_prop:s0
-persist.vendor.radio.meid                       u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.boot_completed                    u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.imei                              u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.meid                              u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.psno                              u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.serialno                          u:object_r:vendor_radio_prop:s0
-ro.vendor.oem.sno                               u:object_r:vendor_radio_prop:s0
-ro.vendor.ril                           u:object_r:vendor_public_vendor_default_prop:s0
-ro.vendor.ril.svlte1x                   u:object_r:vendor_radio_prop:s0
-ro.vendor.ril.svdo                      u:object_r:vendor_radio_prop:s0
-
-# NFC
-ro.vendor.nfc. u:object_r:vendor_nfc_mi_prop:s0
-ro.vendor.se. u:object_r:vendor_nfc_mi_prop:s0
-
-# Sensors
-persist.vendor.sensors.parsedalgo.              u:object_r:vendor_parsedalgo_prop:s0
-persist.vendor.trigger.cct                      u:object_r:vendor_cct_prop:s0
+vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0
 
 # ZRAM
-persist.vendor.zram.size 	    u:object_r:vendor_zram_prop:s0
+persist.vendor.zram.size            u:object_r:vendor_zram_prop:s0
 persist.vendor.zram.comp_algorithm  u:object_r:vendor_zram_prop:s0
 persist.vendor.vm.swappiness	    u:object_r:vendor_zram_prop:s0

@@ -1,8 +1,3 @@
-# Audio
-tas.smartpa.debug.                      u:object_r:exported_system_prop:s0
-ro.qc.sdk.audio.ssr                     u:object_r:audio_prop:s0
-ro.qc.sdk.audio.fluencetype             u:object_r:audio_prop:s0
-
 # Camera
 persist.camera.                         u:object_r:vendor_camera_prop:s0
 ro.camera.                              u:object_r:vendor_camera_prop:s0
@@ -14,15 +9,7 @@ persist.camera.miai.inference.loglevel  u:object_r:vendor_camera_prop:s0
 persist.vendor.algo.aivs.debug      	u:object_r:vendor_camera_prop:s0
 persist.vendor.aiie_capture_log.debug   u:object_r:vendor_camera_sensor_prop:s0
 
-# Fingerprint
-sys.fp.miui.token                       u:object_r:exported_system_prop:s0
-sys.panel.                              u:object_r:vendor_fp_prop:s0
-
-# Hardware
-ro.hardware.chipname                    u:object_r:exported_default_prop:s0
-ro.vendor.aware_available               u:object_r:exported_default_prop:s0
-
-# MIUI
+# Miui
 ro.boot.hwc                             u:object_r:exported_default_prop:s0
 ro.boot.hwname                          u:object_r:exported_default_prop:s0
 ro.boot.hwversion                       u:object_r:exported_default_prop:s0
@@ -36,22 +23,3 @@ ro.mi.os.version.incremental            u:object_r:exported_system_prop:s0
 ro.product.marketname                   u:object_r:build_prop:s0
 ro.fota.oem                             u:object_r:build_prop:s0
 ro.product.mod_device                   u:object_r:build_prop:s0
-
-# Ril
-ro.carrier.name                         u:object_r:exported_default_prop:s0
-ro.ril.oem.wifimac                      u:object_r:vendor_radio_prop:s0
-
-# XiaomiParts
-persist.sys.turbo_charge_current    u:object_r:exported_system_prop:s0
-sys.perf_mode_active                          u:object_r:exported_system_prop:s0
-persist.sys.parts.gpu.min_frequency           u:object_r:exported_system_prop:s0
-persist.sys.parts.gpu.max_frequency           u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.little.min_frequency   u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.little.max_frequency   u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.little.governor        u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.big.min_frequency      u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.big.max_frequency      u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.big.governor           u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.prime.min_frequency    u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.prime.max_frequency    u:object_r:exported_system_prop:s0
-persist.sys.parts.cpu.prime.governor         u:object_r:exported_system_prop:s0

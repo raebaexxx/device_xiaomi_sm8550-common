@@ -1,29 +1,11 @@
 # Camera
-allow system_server hal_camera:binder transfer;
 allow system_server hal_camera:binder { call transfer };
 allow system_server hal_camera:fd *;
 
-allow system_server isolated_compute_app:unix_stream_socket { getopt };
-rw_dir_file(system_server, vndbinder_device)
-
-# Sensors
-allow system_server vendor_hal_citsensorservice_xiaomi_default:binder { call transfer };
-allow system_server vendor_hal_sensorcommunicate_default:binder { call transfer };
-
-# Thermal
-allow system_server sysfs_thermal:dir search;
-allow system_server sysfs_thermal:file r_file_perms;
-allow system_server sys_thermal_wifi_limit:file { getattr open read watch watch_reads };
-
-# MiCharge
-allow system_server vendor_hal_micharge_xiaomi_hwservice:hwservice_manager find;
-allow system_server vendor_hal_micharge_xiaomi_default:binder { call transfer };
-
-allow system_server audioserver_tmpfs:file { write };
-allow system_server app_zygote_tmpfs:file { write };
-
-# Allow system_server to read Fast Charging status
+# Fast Charging status
+allow system_server sysfs_wakeup:file r_file_perms;
 allow system_server vendor_sysfs_battery_supply:file rw_file_perms;
-allow system_server vendor_sysfs_battery_supply:file { getattr open read };
+r_dir_file(system_server, vendor_sysfs_battery_supply)
 
+# Graphics sysfs
 allow system_server vendor_sysfs_graphics:file rw_file_perms;

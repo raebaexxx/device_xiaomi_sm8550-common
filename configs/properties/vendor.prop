@@ -129,7 +129,6 @@ persist.vendor.dpm.vndr.idletimer.mode=default
 
 # DRM
 drm.service.enabled=true
-drm.service.enabled=true
 vendor.wv.oemcrypto.debug.enable_hlos_data_path=true
 
 # Fingerprint
@@ -149,7 +148,8 @@ vendor.gatekeeper.disable_spu=true
 debug.egl.hw=0
 debug.sf.auto_latch_unsignaled=0
 debug.sf.defer_refresh_rate_when_off=1
-debug.sf.disable_client_composition_cache=0
+debug.sf.disable_backpressure=1
+debug.sf.disable_client_composition_cache=1
 debug.sf.early.app.duration=13666666
 debug.sf.early.sf.duration=10500000
 debug.sf.earlyGl.app.duration=13666666
@@ -193,9 +193,6 @@ vendor.gralloc.enable_logs=0
 # HWUI
 debug.hwui.use_hint_manager=true
 debug.hwui.target_cpu_time_percent=30
-
-# Keyguard
-keyguard.no_require_sim=true
 
 # Media
 debug.c2.use_dmabufheaps=1

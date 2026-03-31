@@ -43,7 +43,7 @@ import com.android.settingslib.widget.UsageProgressBarPreference;
 import com.xiaomi.settings.Constants;
 import com.xiaomi.settings.CustomSeekBarPreference;
 import com.xiaomi.settings.R;
-import com.xiaomi.settings.utils.TileUtils;
+import com.xiaomi.settings.utils.FileUtils;
 
 public class AutoHbmFragment extends PreferenceFragmentCompat
         implements OnCheckedChangeListener, SensorEventListener, Preference.OnPreferenceChangeListener {
@@ -95,7 +95,7 @@ public class AutoHbmFragment extends PreferenceFragmentCompat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_tile) {
-            TileUtils.requestAddTileService(
+            FileUtils.requestAddTileService(
                     getContext(),
                     AutoHbmTileService.class,
                     R.string.auto_hbm_title,

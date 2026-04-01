@@ -11,8 +11,11 @@ from extract_utils.fixups_blob import (
     blob_fixups_user_type,
 )
 from extract_utils.fixups_lib import (
-    lib_fixups,
+    lib_fixup_remove_arch_suffix,
+    lib_fixup_vendorcompat,
     lib_fixups_user_type,
+    libs_clang_rt_ubsan,
+    libs_proto_3_9_1,
 )
 from extract_utils.main import (
     ExtractUtils,
@@ -33,7 +36,8 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 
 
 lib_fixups: lib_fixups_user_type = {
-    **lib_fixups,
+    libs_clang_rt_ubsan: lib_fixup_remove_arch_suffix,
+    libs_proto_3_9_1: lib_fixup_vendorcompat,
     (
         'vendor.qti.hardware.qccsyshal@1.0',
         'vendor.qti.hardware.qccsyshal@1.1',
@@ -100,6 +104,8 @@ blob_fixups: blob_fixups_user_type = {
        'vendor/etc/media_codecs_kalama_vendor_without_dvenc.xml',
     ): blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+    'vendor/etc/ueventd.rc' : blob_fixup()
+        .add_line_if_missing('\n# Charger\n/sys/class/qcom-battery     night_charging            0660    system  system'),
     (
         'vendor/bin/poweropt-service',
         'vendor/lib64/libaodoptfeature.so',

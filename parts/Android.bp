@@ -16,8 +16,10 @@ android_app {
     system_ext_specific: true,
     static_libs: [
         "androidx.core_core",
+        "androidx.preference_preference",
         "org.lineageos.settings.resources",
         "SettingsLib",
+        "qcrilhook",
     ],
     required: [
         "privapp_whitelist_com.xiaomi.settings.xml",

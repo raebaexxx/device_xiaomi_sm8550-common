@@ -61,6 +61,8 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libvolumelistener
 
+$(call soong_config_set, android_hardware_audio, run_64bit, true)
+
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
@@ -136,6 +138,10 @@ PRODUCT_PACKAGES += \
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# eUICC
+PRODUCT_PACKAGES += \
+    XiaomiEsimSwitcher
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
@@ -149,10 +155,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 # Fstab
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/charger_fstab.qti:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/charger_fstab.qti \
-    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom \
-    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+PRODUCT_PACKAGES += \
+    charger_fw_fstab.qti
+
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    fstab.qcom.vendor_ramdisk
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -181,9 +189,26 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # Init
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.sm8550.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.sm8550.rc \
-    $(LOCAL_PATH)/init/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc
+PRODUCT_PACKAGES += \
+    init.qcom.rc \
+    init.qti.kernel.rc \
+    init.target.rc \
+    init.qcom.factory.rc \
+    init.sm8550.rc \
+    init.recovery.qcom.rc
+
+PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    init.kernel.post_boot-kalama.sh \
+    init.kernel.post_boot.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sh \
+    init.qti.kernel.sh \
+    init.qti.write.sh \
+    system_dlkm_modprobe.sh \
+    vendor_modprobe.sh
 
 # IPA
 PRODUCT_PACKAGES += \
@@ -203,9 +228,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-goodix.kl
 
 # Lineage Health
-$(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
-$(call soong_config_set,lineage_health,charging_control_charging_enabled,0)
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/qcom-battery/night_charging)
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
 PRODUCT_PACKAGES += \
@@ -253,8 +275,6 @@ PRODUCT_PACKAGES += \
 # Parts
 PRODUCT_PACKAGES += \
     XiaomiParts
-
-PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 
 # Partitions
 PRODUCT_PACKAGES += \
@@ -358,6 +378,13 @@ PRODUCT_PACKAGES += \
 # Touchscreen
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
+
+$(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/virtual/touch/touch_dev/bump_sample_rate)
+
+# Ueventd
+PRODUCT_PACKAGES += \
+    ueventd.qcom.rc \
+    ueventd-odm.rc
 
 # Update engine
 PRODUCT_PACKAGES += \

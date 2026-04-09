@@ -44,8 +44,6 @@ BOARD_SUPPORTS_SOUND_TRIGGER := true
 BOARD_SUPPORTS_OPENSOURCE_STHAL := true
 TARGET_USES_QCOM_MM_AUDIO := true
 
-$(call soong_config_set, android_hardware_audio, run_64bit, true)
-
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
@@ -59,9 +57,16 @@ BOARD_USES_QCOM_HARDWARE := true
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 
-BOARD_KERNEL_CMDLINE := video=vfb:640x400,bpp=32,memsize=3072000 disable_dma32=on swinfo.fingerprint=$(LINEAGE_VERSION) mtdoops.fingerprint=$(LINEAGE_VERSION)
+BOARD_KERNEL_CMDLINE := \
+    disable_dma32=on \
+    mtdoops.fingerprint=$(LINEAGE_VERSION) \
+    swinfo.fingerprint=$(LINEAGE_VERSION)
 
-BOARD_BOOTCONFIG := androidboot.hardware=qcom androidboot.memcg=1 androidboot.usbcontroller=a600000.dwc3 androidboot.console=ttyMSM0
+BOARD_BOOTCONFIG := \
+    androidboot.console=ttyMSM0 \
+    androidboot.hardware=qcom \
+    androidboot.memcg=1 \
+    androidboot.usbcontroller=a600000.dwc3
 
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_RAMDISK_USE_LZ4 := true
@@ -113,15 +118,6 @@ TARGET_KERNEL_EXT_MODULES := \
 	nxp/opensource/driver
 
 BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
-BOOT_KERNEL_MODULES += \
-    q6_pdr_dlkm.ko \
-    q6_notifier_dlkm.ko \
-    snd_event_dlkm.ko \
-    gpr_dlkm.ko \
-    spf_core_dlkm.ko \
-    adsp_loader_dlkm.ko \
-    qti_battery_charger.ko \
-    qrng_dlkm.ko
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_dlkm))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.first_stage))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
@@ -157,9 +153,6 @@ $(foreach p, $(call to-upper, $(BOARD_XIAOMI_DYNAMIC_PARTITIONS_PARTITION_LIST))
 BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 include vendor/lineage/config/BoardConfigReservedSize.mk
 
-BOARD_ROOT_EXTRA_FOLDERS += vendor/firmware vendor/firmware_mnt
-BOARD_ROOT_EXTRA_SYMLINKS += /lib/modules:/vendor/lib/modules
-
 # Platform
 TARGET_BOARD_PLATFORM := kalama
 TARGET_BOOTLOADER_BOARD_NAME := kalama
@@ -187,9 +180,6 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/configs/properties/system.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/configs/properties/system_ext.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/properties/vendor.prop
 
-# Touchscreen
-$(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/virtual/touch/touch_dev/bump_sample_rate)
-
 # VINTF
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
@@ -202,11 +192,12 @@ DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml
 
 # Vendor security patch
-VENDOR_SECURITY_PATCH := 2025-12-01
+VENDOR_SECURITY_PATCH := 2026-02-01
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 BOARD_AVB_VBMETA_SYSTEM := product system system_ext
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem

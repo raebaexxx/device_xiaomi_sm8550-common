@@ -74,14 +74,4 @@
     <string name="swappiness_value">%1$d</string>
     <string name="zram_change_failed">Không áp dụng cài đặt ZRAM</string>
     <string name="advanced_settings">Cài đặt nâng cao</string>
-    <!-- ESIM -->
-    <string name="esim_title">eSIM</string>
-    <string name="esim_enable_name">Bật eSIM</string>
-    <string name="esim_summary_enabled">Đã bật</string>
-    <string name="esim_summary_disabled">Đã tắt</string>
-    <string name="esim_summary_unsupported">eSIM không được hỗ trợ trên thiết bị này</string>
-    <string name="esim_warning_title">eSIM đang sử dụng</string>
-    <string name="esim_warning_message">Vui lòng tắt hoặc xóa hồ sơ eSIM hiện tại của bạn trước khi tiến hành</string>
-    <string name="esim_footer_note">Kích hoạt eSIM sẽ vô hiệu hóa khe SIM vật lý thứ hai</string>
-    <string name="esim_footer_note_unsupported">Thiết bị này không hỗ trợ chức năng eSIM</string>
 </resources>

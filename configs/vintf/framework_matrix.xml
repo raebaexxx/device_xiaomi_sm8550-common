@@ -1683,21 +1683,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.qti.sla.service</name>
-        <version>1.0</version>
-        <interface>
-            <name>ISlaService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.sla.service</name>
-        <interface>
-            <name>ISlaAIDLService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.snapdragonServices</name>
         <interface>
@@ -1730,14 +1715,6 @@
         <name>vendor.qti.syshealthmon</name>
         <interface>
             <name>ISysHealthMon</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.rongcard.hardware.eid</name>
-        <version>1.0</version>
-        <interface>
-            <name>IEidDevice</name>
             <instance>default</instance>
         </interface>
     </hal>

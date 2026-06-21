@@ -28,4 +28,3 @@ persist.vendor.vonr_setting_support=1
 # RIL
 ril.subscription.types=NV,RUIM
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
-ro.telephony.default_network=33,33

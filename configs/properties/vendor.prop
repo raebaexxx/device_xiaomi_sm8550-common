@@ -238,7 +238,6 @@ persist.sys.perf.scroll_opt.heavy_app=1
 # Sensors
 ro.vendor.sensors.xiaomi.double_tap=true
 ro.vendor.sensors.xiaomi.single_tap=true
-ro.vendor.sensors.xiaomi.udfps=true
 
 # USB
 sys.usb.mtp.batchcancel=1

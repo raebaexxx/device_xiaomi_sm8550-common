@@ -18,6 +18,30 @@ set_prop(hal_camera, vendor_camera_sensor_prop)
 # Binder IPC
 allow hal_camera system_server:binder { call transfer };
 allow hal_camera system_server:fd *;
+allow hal_camera_default camera_persist_file:dir r_dir_perms;
+allow hal_camera_default cgroup:file r_file_perms;
+allow hal_camera_default mnt_vendor_file:dir r_dir_perms;
+allow hal_camera_default proc_pressure_cpu:file r_file_perms;
+allow hal_camera_default proc_pressure_io:file { getattr open read write };
+allow hal_camera_default proc_pressure_mem:file { getattr open read write };
+allow hal_camera_default proc_meminfo:file r_file_perms;
+allow hal_camera_default self:capability sys_resource;
+allow hal_camera_default self:unix_stream_socket create_socket_perms;
+allow hal_camera_default sysfs_csiphy_umd_paras:file rw_file_perms;
+allow hal_camera_default hal_quickcamera_hwservice:hwservice_manager find;
+allow hal_camera_default platform_app:binder { call transfer };
+allow hal_camera_default platform_app:fd use;
+allow hal_camera_default priv_app:binder { call transfer };
+allow hal_camera_default priv_app:fd use;
+allow hal_camera_default system_app:binder { call transfer };
+allow hal_camera_default system_app:fd use;
+allow hal_camera_default system_server:binder call;
+allow hal_camera_default sys_thermal_flash_state:file rw_file_perms;
+allow hal_camera_default sys_thermal_torch_real_level:file rw_file_perms;
+allow hal_camera_default vendor_sysfs_devfreq:dir search;
+allow hal_camera_default vendor_sysfs_devfreq:file r_file_perms;
+allow hal_camera_default vendor_persist_sensors_file:dir r_dir_perms;
+allow hal_camera_default vendor_sysfs_kgsl:file { getattr open read };
 
 allow hal_camera_default { platform_app priv_app system_app system_server }:binder { call transfer };
 allow hal_camera_default { platform_app priv_app system_app }:fd *;

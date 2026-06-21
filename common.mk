@@ -129,7 +129,9 @@ PRODUCT_PACKAGES += \
 # Dolby Audio
 PRODUCT_PACKAGES += \
     libcodec2_hidl_shim \
-    XiaomiDolby
+    DolbyAtmos
+
+# PRODUCT_PACKAGE_OVERLAPS += DolbyAtmos
 
 # DRM
 PRODUCT_PACKAGES += \

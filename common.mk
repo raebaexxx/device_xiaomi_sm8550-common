@@ -128,7 +128,8 @@ PRODUCT_PACKAGES += \
 
 # Dolby Audio
 PRODUCT_PACKAGES += \
-    XiaomiDolby
+    LunarisDolby
+$(call inherit-product, hardware/dolby/dolby.mk)
 
 # PRODUCT_PACKAGE_OVERLAPS += DolbyAtmos
 

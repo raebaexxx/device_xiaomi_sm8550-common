@@ -128,7 +128,6 @@ PRODUCT_PACKAGES += \
 
 # Dolby Audio
 PRODUCT_PACKAGES += \
-    libcodec2_hidl_shim \
     XiaomiDolby
 
 # PRODUCT_PACKAGE_OVERLAPS += DolbyAtmos

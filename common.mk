@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+# Vendor configurations
+$(call inherit-product, vendor/xiaomi/sm8550-common/sm8550-common-vendor.mk)
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -427,9 +429,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml
-
-# Vendor configurations
-$(call inherit-product, vendor/xiaomi/sm8550-common/sm8550-common-vendor.mk)
 
 # Vendor service manager
 PRODUCT_PACKAGES += \

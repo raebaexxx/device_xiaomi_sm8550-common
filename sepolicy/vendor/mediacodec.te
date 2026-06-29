@@ -1,5 +1,7 @@
+allow mediacodec hal_dms_hwservice:hwservice_manager find;
 hal_client_domain(mediacodec, hal_audio)
 hal_client_domain(mediacodec, hal_dms)
+binder_call(mediacodec, hal_dms_default)
 
 allow audioserver unlabeled:file { read write open getattr };
 allow hal_audio_default hal_audio_default:process { execmem };

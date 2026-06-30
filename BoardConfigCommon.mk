@@ -171,7 +171,6 @@ ENABLE_VENDOR_RIL_SERVICE := true
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 include device/qcom/sepolicy_vndr/SEPolicy.mk
-SELINUX_IGNORE_NEVERALLOWS := true
 
 # System properties
 TARGET_ODM_PROP += $(COMMON_PATH)/configs/properties/odm.prop
@@ -183,7 +182,6 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/configs/properties/vendor.prop
 # VINTF
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(COMMON_PATH)/configs/vintf/framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 

@@ -39,6 +39,11 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     libtinycompress
 
+# Dolby Audio
+PRODUCT_PACKAGES += \
+    LunarisDolby
+$(call inherit-product, hardware/dolby/dolby.mk)
+
 PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.2-impl \
     android.hardware.soundtrigger@2.3-impl
@@ -89,6 +94,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/bluetooth_qti_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_audio_policy_configuration.xml \
     hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/bluetooth_qti_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_hearing_aid_audio_policy_configuration.xml \
+    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
+    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
+    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy \
     hardware/qcom-caf/sm8550/audio/pal/configs/kalama/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
     hardware/qcom-caf/sm8550/audio/primary-hal/configs/kalama/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml
 
@@ -131,11 +139,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.demura-service \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service
-
-# Dolby Audio
-PRODUCT_PACKAGES += \
-    LunarisDolby
-$(call inherit-product, hardware/dolby/dolby.mk)
 
 # PRODUCT_PACKAGE_OVERLAPS += DolbyAtmos
 
@@ -404,6 +407,9 @@ PRODUCT_PACKAGES += \
     vendor.lineage.touch-service.xiaomi
 
 $(call soong_config_set, XIAOMI_TOUCH, HIGH_TOUCH_POLLING_PATH, /sys/devices/virtual/touch/touch_dev/bump_sample_rate)
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
 # Ueventd
 PRODUCT_PACKAGES += \

@@ -166,7 +166,7 @@
         <effect name="vqe" library="vqe" uuid="64a0f614-7fa4-48b8-b081-d59dc954616f"/>
         <!--DOLBY END-->
         <effect name="quasar" library="quasar" uuid="71d0e2ee-e44d-483d-a809-09e75ee55ecd"/>
-        <effect name="mispatializer" library="mispatializer" uuid="bb8c97a8-cc6c-11ec-9d64-0242ac120002"/>
+        <!-- <effect name="mispatializer" library="mispatializer" uuid="bb8c97a8-cc6c-11ec-9d64-0242ac120002"/> -->
     </effects>
     <postprocess>
         <stream type="music">

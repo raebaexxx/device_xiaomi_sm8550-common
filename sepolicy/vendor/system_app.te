@@ -22,3 +22,7 @@ set_prop(system_app, vendor_zram_prop)
 get_prop(system_app, vendor_zram_prop)
 set_prop(system_app, vendor_default_prop)
 get_prop(system_app, vendor_default_prop)
+
+allow system_app hal_mlipay_hwservice:hwservice_manager find;
+
+binder_call(system_app, hal_mlipay_default)

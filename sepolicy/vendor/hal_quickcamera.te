@@ -13,7 +13,6 @@ binder_call(hal_quickcamera_server, hal_quickcamera_client)
 add_hwservice(hal_quickcamera_server, hal_quickcamera_hwservice)
 
 allow hal_quickcamera_client hal_quickcamera_hwservice:hwservice_manager find;
-allow hal_quickcamera_server hidl_base_hwservice:hwservice_manager add;
 allow hal_quickcamera_default platform_app:binder { call transfer };
 allow hal_quickcamera_default platform_app:fd use;
 allow hal_quickcamera_default system_app:binder { call transfer };

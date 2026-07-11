@@ -8,6 +8,15 @@ allow system_app camlog_device:chr_file { getattr ioctl open read write watch wa
 get_prop(system_app, vendor_camera_sensor_prop)
 hal_client_domain(system_app, vendor_hal_camerapostproc_xiaomi)
 
+# High Brightness Mode
+allow system_app vendor_sysfs_graphics:dir search;
+allow system_app vendor_sysfs_graphics:file rw_file_perms;
+
+# Thermal
+allow system_app sysfs_thermal:file write;
+allow system_app sysfs_thermal:file rw_file_perms;
+r_dir_file(system_app, rootfs)
+
 allow system_app hal_mlipay_hwservice:hwservice_manager find;
 
 binder_call(system_app, hal_mlipay_default)

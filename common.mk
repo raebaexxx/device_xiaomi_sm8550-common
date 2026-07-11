@@ -140,6 +140,8 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service
 
+# PRODUCT_PACKAGE_OVERLAPS += DolbyAtmos
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
@@ -292,6 +294,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     LineageResXiaomi
+
+# Parts
+PRODUCT_PACKAGES += \
+    XiaomiParts
 
 # Partitions
 PRODUCT_PACKAGES += \

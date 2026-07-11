@@ -103,6 +103,12 @@ on boot
     chown system system /sys/class/qcom-battery/reverse_chg_mode
     chmod 0644 /sys/class/qcom-battery/reverse_chg_mode
 
+    # Fast (turbo) charging detection node, used by BatteryService / SystemUI.
+    # Already world-readable on fuxi, but chown/chmod keeps behaviour consistent
+    # and makes the file explicitly owned by the system user.
+    chown system system /sys/class/qcom-battery/fastchg_mode
+    chmod 0644 /sys/class/qcom-battery/fastchg_mode
+
     # High touch polling rate
     chown system system /sys/devices/virtual/touch/touch_dev/bump_sample_rate
     chmod 0660 /sys/devices/virtual/touch/touch_dev/bump_sample_rate

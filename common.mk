@@ -284,7 +284,6 @@ PRODUCT_COPY_FILES += \
 # Overlay
 PRODUCT_PACKAGES += \
     CarrierConfigOverlayCommon \
-    CrDroidFrameworkOverlay \
     FrameworkResOverlayCommon \
     SystemUIOverlayCommon \
     SettingsOverlayCommon \

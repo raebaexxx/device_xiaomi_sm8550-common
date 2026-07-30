@@ -57,33 +57,6 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('pipe2: 1'),
     'vendor/etc/qcril_database/upgrade/config/6.0_config.sql' : blob_fixup()
         .regex_replace('(persist\\.vendor\\.radio\\.redir_party_num.*)true', '\\1false'),
-    (
-        'vendor/lib64/c2.dolby.hevc.dec.so',
-        'vendor/lib64/c2.dolby.hevc.enc.so',
-        'vendor/lib64/c2.dolby.hevc.sec.dec.so',
-        'vendor/lib64/libcodec2_soft_ac4dec.so',
-        'vendor/lib64/libcodec2_soft_ddpdec.so',
-        'vendor/lib64/libDecoderProcessor.so',
-        'vendor/lib64/libdlbdsservice.so',
-        'vendor/lib64/libdlbpreg.so',
-        'vendor/lib64/libqc2audio_hwaudiocodec.so',
-        'vendor/lib64/libswspatializer_ext.so',
-        'vendor/lib64/soundfx/libdlbvol.so',
-        'vendor/lib64/soundfx/libhwdap.so',
-        'vendor/lib64/soundfx/libmisoundfx.so',
-        'vendor/lib64/soundfx/libswspatializer.so',
-    ): blob_fixup()
-        .replace_needed(
-            'libstagefright_foundation.so',
-            'libstagefright_foundation-v33.so',
-        ),
-    (
-        'vendor/bin/hw/vendor.dolby.media.c2@1.0-service', 
-        'vendor/bin/hw/dolbycodec2',
-    ): blob_fixup()
-        .add_needed('libshim_dolby.so'),
-    'vendor/lib64/c2.dolby.client.so' : blob_fixup()
-        .add_needed('libcodec2_hidl_shim.so'),
     'vendor/lib64/libqcodec2_core.so' : blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so' : blob_fixup()
@@ -96,10 +69,12 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libbase_shim.so'),
     (
        'vendor/etc/media_codecs_kalama.xml',
-       'vendor/etc/media_codecs_kalama_vendor.xml',
-       'vendor/etc/media_codecs_kalama_vendor_without_dvenc.xml',
     ): blob_fixup()
-        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+        .regex_replace(r'\s*<MediaCodec\b[^>]*name=\"c2\.dolby\.[^>]*>[\s\S]*?<\/MediaCodec>', '')
+        .regex_replace('.+media_codecs_(dolby_audio|google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+    'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
+        .regex_replace(r'\s*<fqname>@1\.0::IComponentStore/dolby</fqname>', '')
+        .regex_replace('.+DOLBY.+\n', ''),
     (
         'vendor/bin/poweropt-service',
         'vendor/lib64/libaodoptfeature.so',

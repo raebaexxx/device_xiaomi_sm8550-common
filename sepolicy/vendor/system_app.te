@@ -1,13 +1,3 @@
-# Camera
-allow system_app vendor_hal_camerapostproc_xiaomi_hwservice:hwservice_manager find;
-allow system_app { hal_camera_default vendor_hal_camerapostproc_xiaomi }:binder { call transfer };
-allow system_app { hal_camera_default vendor_hal_camerapostproc_xiaomi }:fd *;
-allow system_app vendor_camera_data_file:dir { r_dir_perms append map write };
-allow system_app vendor_camera_data_file:file r_file_perms;
-allow system_app camlog_device:chr_file { getattr ioctl open read write watch watch_reads };
-get_prop(system_app, vendor_camera_sensor_prop)
-hal_client_domain(system_app, vendor_hal_camerapostproc_xiaomi)
-
 allow system_app hal_mlipay_hwservice:hwservice_manager find;
 
 binder_call(system_app, hal_mlipay_default)

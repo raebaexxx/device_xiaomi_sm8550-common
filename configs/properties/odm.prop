@@ -152,9 +152,3 @@ ro.vendor.net.enable_dual_wifi=1
 persist.vendor.sensor.deviceorient=true
 persist.vendor.sensor.onetrack=true
 persist.vendor.ssr.restart_level=ALL_ENABLE
-
-# Dolby
-vendor.audio.dolby.control.support=true
-ro.vendor.display.dolbyvision.support=true
-ro.vendor.mi_sf.gallery_p3_dolby_opt=true
-debug.config.media.video.dolby_vision_suports=true

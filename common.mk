@@ -3,8 +3,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Vendor configurations
-$(call inherit-product, vendor/xiaomi/sm8550-common/sm8550-common-vendor.mk)
 
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
@@ -14,6 +12,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
+
+# Inherit DolbyAtmos
+$(call inherit-product, device/xiaomi/sm8550-common-dolby/dolby.mk)
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -31,6 +32,14 @@ PRODUCT_PACKAGES += \
     otapreopt_script \
     checkpoint_gc
 
+# XiaomiParts
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
+# DSPVolumeSynchronizer
+PRODUCT_PACKAGES += \
+    DSPVolumeSynchronizer
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl \
@@ -38,11 +47,6 @@ PRODUCT_PACKAGES += \
     audio.primary.default \
     audio.r_submix.default \
     libtinycompress
-
-# Dolby Audio
-PRODUCT_PACKAGES += \
-    LunarisDolby
-$(call inherit-product, hardware/dolby/dolby.mk)
 
 PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.2-impl \
@@ -430,6 +434,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml
+
+# Vendor configurations
+$(call inherit-product, vendor/xiaomi/sm8550-common/sm8550-common-vendor.mk)
 
 # Vendor service manager
 PRODUCT_PACKAGES += \

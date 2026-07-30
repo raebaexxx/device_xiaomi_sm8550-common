@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2023 Paranoid Android
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- 小米设置 -->
+    <string name="app_title">小米设置</string>
+    <string name="tile_add">添加磁贴</string>
+    <string name="tile_added">已添加磁贴</string>
+    <string name="tile_not_added">添加磁贴失败</string>
+    <string name="tile_already_added">磁贴已存在</string>
+    <string name="tile_on">开启</string>
+    <string name="tile_off">关闭</string>
+
+    <!-- 扬声器清理 -->
+   <string name="clear_speaker_title">扬声器清理</string>
+   <string name="clear_speaker_summary">播放30秒音频清理扬声器</string>
+   <string name="clear_speaker_description">如果扬声器轻微堵塞，请先将媒体音量调至最大，再运行此功能1-2次。\n\n如果扬声器严重堵塞，请运行此功能2-5次，同时将设备扬声器朝下摇晃。</string>
+
+    <!-- 自定义滑块 -->
+    <string name="custom_seekbar_value">数值：<xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">默认</string>
+    <string name="custom_seekbar_default_value_to_set">默认值：<xliff:g id="v">%s</xliff:g>\nLong tap to set</string>
+    <string name="custom_seekbar_default_value_is_set">已设置默认值</string>
+
+    <!-- 自动高亮度模式 -->
+    <string name="auto_hbm_title">自动高亮度模式(HBM)</string>
+    <string name="auto_hbm_main_switch_title">启用自动HBM</string>
+    <string name="tile_auto_hbm">自动HBM</string>
+    <string name="tile_hbm_on">开启</string>
+    <string name="tile_hbm_off">关闭</string>
+    <string name="tile_hbm">HBM</string>
+    <string name="tile_hbm_unavailable">HBM不可用</string>
+    <string name="tile_auto_hbm_or_brightness_enabled">自动HBM或自动亮度已启用</string>
+    <string name="hbm_mode_title">高亮度模式</string>
+    <string name="hbm_mode_notification">高亮度模式已激活。长时间使用可能会损害屏幕。</string>
+    <string name="auto_hbm_summary">根据环境光强度(lux)自动启用高亮度模式</string>
+    <string name="auto_hbm_threshold_title">光线阈值</string>
+    <string name="auto_hbm_threshold_summary">设置触发HBM的光线强度阈值(lux)</string>
+    <string name="auto_hbm_enable_time_title">启用延迟</string>
+    <string name="auto_hbm_enable_time_summary">达到光线阈值后持续多少秒才激活HBM</string>
+    <string name="auto_hbm_disable_time_title">关闭延迟</string>
+    <string name="auto_hbm_disable_time_summary">低于光线阈值后持续多少秒才关闭HBM</string>   
+
+    <!-- 应用温控配置 -->
+    <string name="thermal_title">应用温控配置</string>
+    <string name="thermal_enable">启用应用温控配置</string>
+    <string name="thermal_summary">为不同应用调整温控配置以获得最佳性能</string>
+    <string name="thermal_default">默认</string>
+    <string name="thermal_benchmark">跑分模式</string>
+    <string name="thermal_browser">浏览器</string>
+    <string name="thermal_camera">相机</string>
+    <string name="thermal_dialer">电话</string>
+    <string name="thermal_gaming">游戏</string>
+    <string name="thermal_navigation">导航</string>
+    <string name="thermal_streaming">视频流</string>
+    <string name="thermal_video">视频</string>
+
+    <!-- 温控磁贴 -->
+    <string name="thermal_tile_label">应用温控配置</string>
+    <string name="thermal_tile_enabled_subtitle">已启用</string>
+    <string name="thermal_tile_disabled_subtitle">已禁用</string>
+
+</resources>

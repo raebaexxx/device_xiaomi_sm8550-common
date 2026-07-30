@@ -291,6 +291,7 @@ PRODUCT_PACKAGES += \
     FrameworkResOverlayCommon \
     SystemUIOverlayCommon \
     SettingsOverlayCommon \
+    SettingsResTargetCommon \
     TelephonyOverlayCommon \
     WifiOverlayCommon
 

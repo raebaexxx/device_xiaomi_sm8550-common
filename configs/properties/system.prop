@@ -1,6 +1,9 @@
 # CameraX
 ro.camerax.extensions.enabled=true
 
+# Maintainer
+ro.lunaris.maintainer=RaeBaeXXX
+
 # HWUI
 debug.hwui.skia_atrace_enabled=false
 ro.hwui.drop_shadow_cache_size=6

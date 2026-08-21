@@ -80,44 +80,31 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8550
-TARGET_KERNEL_CONFIG := \
-    gki_defconfig \
-    vendor/kalama_GKI.config \
-    vendor/$(PRODUCT_DEVICE)_GKI.config
+TARGET_KERNEL_VERSION := 5.15
+
+# Prebuilt kernel + modules (extracted from a successful build).
+# The modules are installed via PRODUCT_COPY_FILES in common.mk to keep them
+# out of soong analysis (727 module paths blow up soong_build memory).
+# To return to source-built kernel, comment the three TARGET_PREBUILT_*/DTB
+# lines below and re-enable TARGET_KERNEL_SOURCE/TARGET_KERNEL_CONFIG and
+# the ext-module list.
+TARGET_PREBUILT_KERNEL := $(COMMON_PATH)/prebuilt/kernel/Image
+BOARD_PREBUILT_DTBOIMAGE := $(COMMON_PATH)/prebuilt/kernel/dtbo.img
+BOARD_PREBUILT_DTBIMAGE_DIR := $(COMMON_PATH)/prebuilt/kernel/dtb
+# Kernel modules are shipped as prebuilt ELF files through PRODUCT_COPY_FILES
+# (see common.mk), which normally triggers an error:
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+#TARGET_KERNEL_SOURCE := kernel/xiaomi/sm8550
+#TARGET_KERNEL_CONFIG := \
+#    gki_defconfig \
+#    vendor/kalama_GKI.config \
+#    vendor/$(PRODUCT_DEVICE)_GKI.config
 
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
-TARGET_NEEDS_DTBOIMAGE := true
 
-# Kernel (modules)
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/xiaomi/sm8550-modules
-TARGET_KERNEL_EXT_MODULES := \
-	qcom/opensource/mmrm-driver \
-	qcom/opensource/mm-drivers/hw_fence \
-	qcom/opensource/mm-drivers/msm_ext_display \
-	qcom/opensource/mm-drivers/sync_fence \
-	qcom/opensource/audio-kernel \
-	qcom/opensource/camera-kernel \
-	qcom/opensource/dataipa/drivers/platform/msm \
-	qcom/opensource/datarmnet/core \
-	qcom/opensource/datarmnet-ext/aps \
-	qcom/opensource/datarmnet-ext/offload \
-	qcom/opensource/datarmnet-ext/shs \
-	qcom/opensource/datarmnet-ext/perf \
-	qcom/opensource/datarmnet-ext/perf_tether \
-	qcom/opensource/datarmnet-ext/sch \
-	qcom/opensource/datarmnet-ext/wlan \
-	qcom/opensource/securemsm-kernel \
-	qcom/opensource/display-drivers/msm \
-	qcom/opensource/eva-kernel \
-	qcom/opensource/video-driver \
-	qcom/opensource/graphics-kernel \
-	qcom/opensource/wlan/platform \
-	qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
-	qcom/opensource/bt-kernel \
-	nxp/opensource/driver
-
-BOOT_KERNEL_MODULES := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))
+# Kernel modules are shipped as prebuilt files: see the PRODUCT_COPY_FILES
+# block in common.mk ("Prebuilt kernel modules"). The *_LOAD lists below are
+# installed alongside as-is (they were generated from a source build).
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.vendor_dlkm))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(COMMON_PATH)/modules.load.first_stage))
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(strip $(shell cat $(COMMON_PATH)/modules.load.recovery))

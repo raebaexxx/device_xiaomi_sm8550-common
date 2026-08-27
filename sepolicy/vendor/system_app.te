@@ -1,3 +1,7 @@
 allow system_app hal_mlipay_hwservice:hwservice_manager find;
 
+# HyperCharge: cap charge current via /sys/class/power_supply/battery/constant_charge_current
+allow system_app vendor_sysfs_power_supply:file { read write open setattr getattr };
+allow system_app vendor_sysfs_power_supply:dir search;
+
 binder_call(system_app, hal_mlipay_default)

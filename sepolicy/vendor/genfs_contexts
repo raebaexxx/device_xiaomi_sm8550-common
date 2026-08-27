@@ -4,6 +4,10 @@ genfscon sysfs "/csiphy_umd_paras/csiphy_umd_paras" u:object_r:sysfs_csiphy_umd_
 # Fingerprint
 genfscon sysfs "/devices/platform/soc/soc:fingerprint_goodix/wakeup" u:object_r:sysfs_wakeup:s0
 
+# Power supply / charging (HyperCharge control)
+genfscon sysfs /class/power_supply/battery/constant_charge_current u:object_r:vendor_sysfs_power_supply:s0
+genfscon sysfs /class/qcom-battery/fastchg_mode u:object_r:vendor_sysfs_power_supply:s0
+
 # Perf
 genfscon proc "/perflock_records" u:object_r:vendor_proc_perflock_records:s0
 

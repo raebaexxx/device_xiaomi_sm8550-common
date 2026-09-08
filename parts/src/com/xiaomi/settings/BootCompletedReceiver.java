@@ -9,7 +9,6 @@ package com.xiaomi.settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.hardware.display.DisplayManager;
 import android.os.IBinder;
 import android.os.UserHandle;
@@ -17,9 +16,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 
-import androidx.preference.PreferenceManager;
-
-import com.xiaomi.settings.hypercharge.HyperChargeService;
 import com.xiaomi.settings.thermal.ThermalService;
 import com.xiaomi.settings.thermal.ThermalUtils;
 
@@ -45,22 +41,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             }
         } catch (Exception e) {
             Log.e(TAG, "Failed to start ThermalService", e);
-        }
-
-        // Start HyperChargeService if the user disabled the default (full speed) mode
-        // or turned off the toggle — service enforces the chosen current cap.
-        try {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean isHyperChargeEnabled = prefs.getBoolean(Constants.KEY_HYPERCHARGE_STATUS, false);
-            String currentLimit = prefs.getString(Constants.KEY_HYPERCHARGE_LIMIT, Constants.CHARGE_LIMIT_120W);
-
-            if (!isHyperChargeEnabled || !Constants.CHARGE_LIMIT_120W.equals(currentLimit)) {
-                Intent hyperChargeServiceIntent = new Intent(context, HyperChargeService.class);
-                context.startService(hyperChargeServiceIntent);
-                if (DEBUG) Log.d(TAG, "Started HyperChargeService");
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to start HyperChargeService", e);
         }
 
         // Override HDR types to enable Dolby Vision

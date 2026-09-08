@@ -51,23 +51,4 @@
          <item>com.kurogame.wutheringwaves</item>
     </string-array>
 
-    <!-- HyperCharge limit options -->
-    <string-array name="hypercharge_limit_entries">
-        <item>120W (Full)</item>
-        <item>90W (Fast)</item>
-        <item>67W (Balanced)</item>
-        <item>50W (Cool)</item>
-        <item>33W (Battery Saver)</item>
-        <item>30W (Slow/Safe)</item>
-    </string-array>
-
-    <string-array name="hypercharge_limit_values">
-        <item>22000000</item>
-        <item>16500000</item>
-        <item>12300000</item>
-        <item>9200000</item>
-        <item>6000000</item>
-        <item>5500000</item>
-    </string-array>
-
 </resources>

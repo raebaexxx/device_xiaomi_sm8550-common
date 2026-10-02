@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from Redmi K60 Pro (OS3.0.303.0.WMKCNXM).
+## are from Xiaomi 13 Pro (OS3.0.311.0.WMBCNXM).
 
 # ACDBs
 vendor/etc/acdbdata/ffv_models/ffv__5.0.1_0.1__3.0.0_0.0__eai_2.10_enpu3.pmd
@@ -806,7 +806,6 @@ odm/bin/hw/android.hardware.nfc@1.2-service-st
 odm/bin/hw/vendor.nxp.hardware.nfc@2.0-service
 odm/etc/init/android.hardware.nfc@1.2-service-st.rc
 odm/etc/init/vendor.nxp.hardware.nfc@2.0-service.rc
-odm/etc/permissions/android.hardware.nfc.beam.xml
 odm/etc/libnfc-nci.conf
 odm/etc/libnfc-nxp.conf
 odm/etc/libnfc-nxp_RF.conf
@@ -945,8 +944,9 @@ vendor/lib64/vendor.qti.hardware.qseecom@1.0.so
 system_ext/etc/init/qspa_system.rc
 system_ext/etc/qspa/qspa_default.rc
 
-# RIL (Esim hooking) - from fuxi OS3.0.3.0.WMCCNXM
-system_ext/framework/xiaomi-modem-common.jar|30900f8d132cd8ab2d586a44bdf09c0bfcb4f863
+# RIL (Esim hooking) - from fuxi OS2.0.200.7.VMCCNXM
+system_ext/framework/mirilhook.jar|1eef4d279b1180ae5ea4095a20ebd18891a9dae5
+system_ext/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|cdbd5157e63394d1ce96630f88de5186f9d821d9
 
 # RIL
 system_ext/app/QtiTelephonyService/QtiTelephonyService.apk

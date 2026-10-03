@@ -1,6 +1,9 @@
-# Camera
-persist.vendor.EnableP3ColorSpace               u:object_r:vendor_camera_p3enable_prop:s0
-vendor.camera.sensor.                           u:object_r:vendor_camera_sensor_prop:s0
+# The camera property contexts (persist.vendor.EnableP3ColorSpace and
+# vendor.camera.sensor.*) are declared in
+# device/xiaomi/fuxi-miuicamera/sepolicy/vendor/property_contexts.
+# Declaring them here as well triggers
+#   "Unable to serialize property contexts: Duplicate prefix match detected"
+# from property_info_checker, so keep them out of this file.
 
 # Fingerprint
 persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0

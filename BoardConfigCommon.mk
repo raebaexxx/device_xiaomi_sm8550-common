@@ -7,13 +7,16 @@
 COMMON_PATH := device/xiaomi/sm8550-common
 
 # A/B
+# recovery is deliberately excluded: it lives in its own partition
+# (BOARD_RECOVERYIMAGE_PARTITION_SIZE) and we ship a third-party TWRP.
+# Including it makes every OTA overwrite that recovery with the stock
+# PixelOS one, which is empty and cannot flash anything.
 AB_OTA_PARTITIONS := \
     boot \
     dtbo \
     init_boot \
     odm \
     product \
-    recovery \
     system \
     system_dlkm \
     system_ext \

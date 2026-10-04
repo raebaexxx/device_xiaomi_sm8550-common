@@ -7,14 +7,19 @@
 COMMON_PATH := device/xiaomi/sm8550-common
 
 # A/B
-# recovery is deliberately excluded: it lives in its own partition
-# (BOARD_RECOVERYIMAGE_PARTITION_SIZE) and we ship a third-party TWRP.
-# Including it makes every OTA overwrite that recovery with the stock
-# PixelOS one, which is empty and cannot flash anything.
+# recovery and init_boot are deliberately excluded.
+#
+# recovery lives in its own partition (BOARD_RECOVERYIMAGE_PARTITION_SIZE)
+# and we ship a third-party TWRP. Including it makes every OTA overwrite
+# that recovery with the stock PixelOS one, which is empty and cannot flash
+# anything.
+#
+# init_boot carries the ramdisk with KernelSU Next patched by the manager.
+# Updating it over the air would replace the patched copy with the stock one
+# and drop root on every update, so it is flashed manually alongside recovery.
 AB_OTA_PARTITIONS := \
     boot \
     dtbo \
-    init_boot \
     odm \
     product \
     system \

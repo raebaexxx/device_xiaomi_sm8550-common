@@ -78,8 +78,31 @@ blob_fixups: blob_fixups_user_type = {
     (
        'vendor/etc/media_codecs_kalama.xml',
     ): blob_fixup()
-        .regex_replace(r'\s*<MediaCodec\b[^>]*name=\"c2\.dolby\.[^>]*>[\s\S]*?<\/MediaCodec>', '')
-        .regex_replace('.+media_codecs_(dolby_audio|google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+        # This is the file media_server actually parses, not media_codecs.xml.
+        # init.qti.media.sh sets vendor.media.target_variant to _kalama on this
+        # platform, init.qcom.rc mirrors that into ro.media.xml_variant.codecs,
+        # and getDefaultXmlNames() then asks for "media_codecs" + variant + ".xml".
+        # The sibling shipped in the image is media_codecs_performance_kalama.xml,
+        # which confirms the variant is set.
+        #
+        # The google_*/vendor_audio includes stay stripped because those XML files
+        # no longer exist as of Android 14 QPR3 and the swcodec apex already
+        # provides those codecs.
+        #
+        # The two Dolby includes must be present. Without them AC-3, E-AC-3,
+        # E-AC-3 JOC and AC-4 audio decode to silence and Dolby Vision recording
+        # crashes MIUI Camera, because Codec2InfoBuilder drops any component that
+        # is missing from the parsed codec map before it ever queries a store. The
+        # decoders themselves are reached through IComponentStore/default1, and
+        # the encoder through IComponentStore/dolby, both declared by
+        # device/xiaomi/sm8550-common-dolby.
+        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', '')
+        .regex_replace(
+            r'(?m)^([ \t]*)<Include href="media_codecs_c2_audio\.xml"[ \t]*/>[ \t]*$',
+            r'\1<Include href="media_codecs_c2_audio.xml" />\n'
+            r'\1<Include href="media_codecs_dolby_audio.xml" />\n'
+            r'\1<Include href="media_codecs_fuxi_dolby_vision.xml" />',
+        ),
     'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
         .regex_replace(r'\s*<fqname>@1\.0::IComponentStore/dolby</fqname>', '')
         .regex_replace('.+DOLBY.+\n', ''),

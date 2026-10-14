@@ -73,4 +73,30 @@
     <string name="thermal_tile_enabled_subtitle">Enabled</string>
     <string name="thermal_tile_disabled_subtitle">Disabled</string>
 
+
+      <!-- HyperCharge -->
+      <string name="hypercharge_title">HyperCharge</string>
+      <string name="hypercharge_summary">Raise the charge current ceiling from 5.28 A to 6.55 A when the charger allows it</string>
+      <string name="hypercharge_warning">Lifts the coprocessor thermal limit on charge current. What exactly it removes is not known and it stays on for as long as the switch is on, so the phone has nothing holding the charge current back if it gets hot. Charge speed is capped by the phone either way, this only removes the cap.</string>
+      <string name="hypercharge_limit_title">Charge current ceiling</string>
+      <string name="hypercharge_dump_title">Log charging state</string>
+      <string name="hypercharge_dump_summary">Write the full charger state to logcat under the HyperCharge tag</string>
+
+      <string-array name="hypercharge_limit_entries">
+          <item>No limit (hardware ceiling)</item>
+          <item>6.55 A</item>
+          <item>6.00 A</item>
+          <item>5.50 A</item>
+          <item>5.00 A</item>
+          <item>4.50 A</item>
+      </string-array>
+
+      <string-array name="hypercharge_limit_values" translatable="false">
+          <item></item>
+          <item>6550000</item>
+          <item>6000000</item>
+          <item>5500000</item>
+          <item>5000000</item>
+          <item>4500000</item>
+      </string-array>
 </resources>

@@ -1,0 +1,29 @@
+# HyperCharge in XiaomiParts (com.xiaomi.settings) runs in the system_app
+# domain.
+#
+# The node it drives is /sys/class/qcom-battery/thermal_remove, which reaches
+# the coprocessor as XM_PROP_THERMAL_REMOVE. At 1 the charge current ceiling
+# goes from 5.28 A to 6.55 A. charge_control_limit is written too but it is not
+# the lever: across levels 0, 1, 2 and 5 it changes nothing, it is an index
+# into the coprocessor thermal level table rather than a current.
+#
+# pd_verifed was written by an earlier version of this. It reaches the same
+# ceiling but makes the firmware drop MiPPS, so it is not used.
+#
+# The genfscon entries in genfs_contexts were meant to give charge_control_limit
+# and constant_charge_current their own vendor_sysfs_power_supply type, so that
+# write could be scoped to a handful of nodes. That does not happen on this
+# device: /sys/class/power_supply/battery is a symlink, SELinux resolves to the
+# /sys/devices/... path underneath, and the /class/... rule never matches. On
+# device after flashing, the two nodes still carry vendor_sysfs_battery_supply
+# while /class/qcom-battery/fastchg_mode does get relabelled. So the write
+# permission has to go on vendor_sysfs_battery_supply instead, which is wider
+# than intended: it covers every file under /sys/class/power_supply/battery and
+# /sys/class/qcom-battery. thermal_remove carries the same label, so no rule is
+# needed for it separately. Upstream grants system_app the same broad access.
+allow system_app vendor_sysfs_power_supply:dir search;
+allow system_app vendor_sysfs_power_supply:file { read write open setattr getattr };
+allow system_app vendor_sysfs_battery_supply:dir search;
+allow system_app vendor_sysfs_battery_supply:file { read write open setattr getattr };
+allow system_app vendor_sysfs_usb_supply:dir search;
+allow system_app vendor_sysfs_usb_supply:file r_file_perms;

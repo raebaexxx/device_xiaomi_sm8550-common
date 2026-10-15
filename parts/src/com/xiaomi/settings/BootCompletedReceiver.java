@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 
-import com.xiaomi.settings.hypercharge.HyperChargeService;
 import com.xiaomi.settings.thermal.ThermalService;
 import com.xiaomi.settings.thermal.ThermalUtils;
 
@@ -40,8 +39,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
                 context.startService(thermalServiceIntent);
                 if (DEBUG) Log.d(TAG, "Started ThermalService");
             }
-            HyperChargeService.dumpState("boot completed");
-
         } catch (Exception e) {
             Log.e(TAG, "Failed to start ThermalService", e);
         }

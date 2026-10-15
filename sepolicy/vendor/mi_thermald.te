@@ -10,19 +10,8 @@ allow mi_thermald thermal_data_file:file { create getattr open read rename setat
 allow mi_thermald vendor_data_file:dir r_dir_perms;
 allow mi_thermald vendor_data_file:file rw_file_perms;
 allow mi_thermald vendor_sysfs_battery_supply:dir r_dir_perms;
-# Read only on purpose. Thermald uses this to hold constant_charge_current down
-# and walks it lower as the phone warms, which caps fast charging well before
-# the battery or the brick object. Everything else thermald does stays intact:
-# CPU and GPU stepping, the thermal sensors, the cooling devices. Only its
-# control of charge current is taken away, which does mean the phone will run
-# warmer while charging fast.
-allow mi_thermald vendor_sysfs_battery_supply:file r_file_perms;
+allow mi_thermald vendor_sysfs_battery_supply:file rw_file_perms;
 allow mi_thermald vendor_sysfs_battery_supply:lnk_file r_file_perms;
-# The nodes HyperCharge writes carry vendor_sysfs_power_supply instead. Reading
-# them stays allowed so thermald still sees what it is looking at, writing does
-# not.
-allow mi_thermald vendor_sysfs_power_supply:dir r_dir_perms;
-allow mi_thermald vendor_sysfs_power_supply:file r_file_perms;
 allow mi_thermald vendor_sysfs_displayfeature:dir r_dir_perms;
 allow mi_thermald vendor_sysfs_displayfeature:file rw_file_perms;
 allow mi_thermald vendor_sysfs_graphics:dir r_dir_perms;

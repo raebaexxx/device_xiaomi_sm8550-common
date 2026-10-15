@@ -106,19 +106,6 @@ on boot
     chown system system /sys/class/qcom-battery/reverse_chg_mode
     chmod 0644 /sys/class/qcom-battery/input_suspend
     chmod 0644 /sys/class/qcom-battery/reverse_chg_mode
-    chown system system /sys/class/qcom-battery/fastchg_mode
-    chmod 0664 /sys/class/qcom-battery/fastchg_mode
-    # HyperCharge drives this one. It reaches the coprocessor as
-    # XM_PROP_THERMAL_REMOVE and at 1 the charge current ceiling goes from
-    # 5.28 A to 6.55 A, with the thermal level and the PD protocol unchanged.
-    chown system system /sys/class/qcom-battery/thermal_remove
-    chmod 0664 /sys/class/qcom-battery/thermal_remove
-    chown system system /sys/class/power_supply/battery/constant_charge_current
-    chmod 0664 /sys/class/power_supply/battery/constant_charge_current
-    # HyperCharge drives this one: it is the index into the coprocessor thermal
-    # level table, and level 0 is what lifts fcc from 5.00 A to 6.55 A.
-    chown system system /sys/class/power_supply/battery/charge_control_limit
-    chmod 0664 /sys/class/power_supply/battery/charge_control_limit
 
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system

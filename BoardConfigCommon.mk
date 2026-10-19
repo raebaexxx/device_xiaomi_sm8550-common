@@ -20,6 +20,7 @@ COMMON_PATH := device/xiaomi/sm8550-common
 AB_OTA_PARTITIONS := \
     boot \
     dtbo \
+    init_boot \
     odm \
     product \
     system \
@@ -91,6 +92,18 @@ TARGET_KERNEL_CONFIG := \
     gki_defconfig \
     vendor/kalama_GKI.config \
     vendor/$(PRODUCT_DEVICE)_GKI.config
+
+# vendor/lineage/config/BoardConfigKernel.mk hardcodes
+# KERNEL_MAKE_FLAGS += -j$(shell getconf _NPROCESSORS_ONLN), and getconf
+# reports logical CPUs. On a 6-core part with SMT that is 12 concurrent
+# clang jobs, which overruns the RAM and stalls on swap. Measured on this
+# machine: the kernel step took 8m52s of a 15m43s build and spent six
+# minutes of it writing nothing, with siso logging
+# "memory stall 613ms/s" for 37 consecutive seconds. The rebuild itself was
+# only 378 objects out of 4238, so the wall time was stall, not work.
+#
+# kernel.mk appends this variable after the -j12 above and the last -j wins.
+TARGET_KERNEL_ADDITIONAL_FLAGS := -j6
 
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
 TARGET_NEEDS_DTBOIMAGE := true

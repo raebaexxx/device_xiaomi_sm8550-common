@@ -65,8 +65,6 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('libqti-perfd-client.so\n', ''),
     'vendor/etc/seccomp_policy/qwesd@2.0.policy': blob_fixup()
         .add_line_if_missing('pipe2: 1'),
-    'vendor/etc/qcril_database/upgrade/config/6.0_config.sql': blob_fixup()
-        .regex_replace('(persist\\.vendor\\.radio\\.redir_party_num.*)true', '\\1false'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()

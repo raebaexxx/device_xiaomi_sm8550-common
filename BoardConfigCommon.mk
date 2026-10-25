@@ -7,22 +7,13 @@
 COMMON_PATH := device/xiaomi/sm8550-common
 
 # A/B
-# recovery and init_boot are deliberately excluded.
-#
-# recovery lives in its own partition (BOARD_RECOVERYIMAGE_PARTITION_SIZE)
-# and we ship a third-party TWRP. Including it makes every OTA overwrite
-# that recovery with the stock PixelOS one, which is empty and cannot flash
-# anything.
-#
-# init_boot carries the ramdisk with KernelSU Next patched by the manager.
-# Updating it over the air would replace the patched copy with the stock one
-# and drop root on every update, so it is flashed manually alongside recovery.
 AB_OTA_PARTITIONS := \
     boot \
     dtbo \
     init_boot \
     odm \
     product \
+    recovery \
     system \
     system_dlkm \
     system_ext \
@@ -92,18 +83,6 @@ TARGET_KERNEL_CONFIG := \
     gki_defconfig \
     vendor/kalama_GKI.config \
     vendor/$(PRODUCT_DEVICE)_GKI.config
-
-# vendor/lineage/config/BoardConfigKernel.mk hardcodes
-# KERNEL_MAKE_FLAGS += -j$(shell getconf _NPROCESSORS_ONLN), and getconf
-# reports logical CPUs. On a 6-core part with SMT that is 12 concurrent
-# clang jobs, which overruns the RAM and stalls on swap. Measured on this
-# machine: the kernel step took 8m52s of a 15m43s build and spent six
-# minutes of it writing nothing, with siso logging
-# "memory stall 613ms/s" for 37 consecutive seconds. The rebuild itself was
-# only 378 objects out of 4238, so the wall time was stall, not work.
-#
-# kernel.mk appends this variable after the -j12 above and the last -j wins.
-TARGET_KERNEL_ADDITIONAL_FLAGS := -j6
 
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
 TARGET_NEEDS_DTBOIMAGE := true

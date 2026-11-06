@@ -187,7 +187,6 @@ ro.incremental.enable=yes
 debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 vendor.mm.enable.qcom_parser=16777215
-vendor.media.omx=0
 
 # Power
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -232,6 +231,3 @@ ro.config.vc_call_vol_steps=11
 
 # WLAN
 wifi.aware.interface=wifi-aware0
-
-# Zygote
-zygote.critical_window.minute=10

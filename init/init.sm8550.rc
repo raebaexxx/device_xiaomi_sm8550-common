@@ -6,6 +6,7 @@
 
 import /vendor/etc/init/hw/init.batterysecret.rc
 import /vendor/etc/init/hw/init.mi_thermald.rc
+import /vendor/etc/init/vendor.xiaomi.hardware.micharge@1.0-service.rc
 
 on early-boot
     # Modem

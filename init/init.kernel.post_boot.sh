@@ -34,11 +34,10 @@ function configure_zram_parameters() {
 	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
 	MemTotal=${MemTotalStr:16:8}
 
-	low_ram=`getprop ro.config.low_ram`
-
 	# Zram disk - 75% for Go and < 2GB devices .
-	# For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 4GB.
-	# And enable lz4 zram compression for Go targets.
+	# For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 6GB.
+	# Use lz4 zram compression for all targets: it is much cheaper on CPU
+	# than the default lzo-rle while still giving a good compression ratio.
 
 	let RamSizeGB="( $MemTotal / 1048576 ) + 1"
 	diskSizeUnit=M
@@ -49,12 +48,12 @@ function configure_zram_parameters() {
 	fi
 
 	# use MB avoid 32 bit overflow
-	if [ $zRamSizeMB -gt 4096 ]; then
-		let zRamSizeMB=4096
+	if [ $zRamSizeMB -gt 6144 ]; then
+		let zRamSizeMB=6144
 	fi
 
-	if [ "$low_ram" == "true" ]; then
-		echo lz4 > /sys/block/zram0/comp_algorithm
+	if [ -f /sys/block/zram0/comp_algorithm ]; then
+		echo lz4 > /sys/block/zram0/comp_algorithm 2>/dev/null
 	fi
 
 	if [ -f /sys/block/zram0/disksize ]; then
@@ -128,7 +127,7 @@ function configure_memory_parameters() {
 
 	configure_zram_parameters
 	configure_read_ahead_kb_values
-	echo 100 > /proc/sys/vm/swappiness
+	echo 70 > /proc/sys/vm/swappiness
 
 	# Disable periodic kcompactd wakeups. We do not use THP, so having many
 	# huge pages is not as necessary.

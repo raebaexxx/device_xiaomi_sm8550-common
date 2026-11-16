@@ -293,3 +293,18 @@ service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-serv
     capabilities BLOCK_SUSPEND
     rlimit rtprio 10 10
     socket audio_us_socket_1 seqpacket 0666 system system
+
+# The stock supplicant service runs with -dd (maximum debug logging).
+# Override it here instead of carrying a forked wpa_supplicant.
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+    -O/data/vendor/wifi/wpa/sockets \
+    -g@android:wpa_wlan0
+    override
+    interface aidl android.hardware.wifi.supplicant.ISupplicant/default
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    user wifi
+    group wifi net_raw net_admin
+    capabilities NET_RAW NET_ADMIN
+    disabled
+    oneshot

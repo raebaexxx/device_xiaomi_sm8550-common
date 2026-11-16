@@ -231,8 +231,8 @@ on property:sys.boot_completed=1
     wait /sys/class/thermal/thermal_message/boot_complete
     write /sys/class/thermal/thermal_message/boot_complete 2
 
-    # Set thermal mode to mgame
-    write /sys/devices/virtual/thermal/thermal_message/sconfig 19
+    # Use the normal thermal profile (was 19/mgame): no games on this device
+    write /sys/devices/virtual/thermal/thermal_message/sconfig 0
 
     # Enable PowerHAL hint processing
     setprop vendor.powerhal.init 1

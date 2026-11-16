@@ -84,6 +84,10 @@ TARGET_KERNEL_CONFIG := \
     vendor/kalama_GKI.config \
     vendor/$(PRODUCT_DEVICE)_GKI.config
 
+ifeq ($(PRODUCT_DEVICE),fuxi)
+TARGET_KERNEL_CONFIG += vendor/fuxi_perf_a.config
+endif
+
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
 TARGET_NEEDS_DTBOIMAGE := true
 

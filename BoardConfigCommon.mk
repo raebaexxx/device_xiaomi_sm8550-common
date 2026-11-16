@@ -191,7 +191,8 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifest.xml
 DEVICE_MANIFEST_FILE := \
     $(COMMON_PATH)/configs/vintf/manifest_kalama.xml \
-    $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml
+    $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml \
+    vendor/xiaomi/sm8550-common/proprietary/vendor/etc/vintf/manifest/vendor.xiaomi.hardware.micharge@1.0.xml
 
 # Vendor security patch
 VENDOR_SECURITY_PATCH := 2026-08-01

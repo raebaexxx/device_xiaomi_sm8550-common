@@ -27,3 +27,34 @@ media.settings.xml?=/odm/etc/media_profiles_kalama.xml
 # RIL
 ril.subscription.types=NV,RUIM
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
+
+# Debug overhead reduction
+debug.stagefright.rtp=false
+debug.stagefright.fps=false
+debug.stagefright.enableshaping=0
+debug.stagefright.omx-debug=0
+debug.stagefright.profilecodec=0
+debug.stagefright.experiments=0
+debug.sys.looper_stats_enabled=false
+debug.atrace.tags.enableflags=0
+debug.orientation.log=false
+debug.art.monitor.app=false
+debug.generate-debug-info=false
+debug.tflite.trace=0
+debug.assert=0
+debug.checkjni=0
+debug.nn.vlog=0
+debug.jni.logging=0
+debug.sensors=0
+debug.synclog=0
+debug.vulkan.enable_callback=0
+debug.angle.validation=false
+debug.graphics.gpu.profiler.perfetto=false
+debug.renderengine.skia_tracing_enabled=false
+debug.renderengine.skia_use_perfetto_track_events=false
+debug.renderengine.skia_atrace_enabled=false
+debug.egl.finish=false
+debug.egl.traceGpuCompletion=false
+debug.egl.callstack=false
+debug.egl.trace=0
+debug.hwui.skip_eglmanager_telemetry=true

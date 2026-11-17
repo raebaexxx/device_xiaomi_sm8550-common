@@ -22,7 +22,6 @@ ro.vendor.audio.soundtrigger.xiaomievent=1
 ro.vendor.audio.soundtrigger=sva
 
 # Camera
-ro.vendor.camera.interpolation.mialgo.support=true
 ro.camerax.extensions.enabled=true
 
 # Display

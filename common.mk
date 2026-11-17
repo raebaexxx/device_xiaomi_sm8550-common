@@ -186,6 +186,7 @@ PRODUCT_PACKAGES += \
     FrameworkResOverlayUdfps
 
 PRODUCT_VENDOR_PROPERTIES += \
+    persist.vendor.fingerprint.type=udfps_optical \
     ro.vendor.sensors.xiaomi.udfps=true
 endif
 

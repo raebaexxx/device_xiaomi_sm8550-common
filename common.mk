@@ -8,31 +8,12 @@
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
 # Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-12288-dalvik-heap.mk)
-
-# Fuxi 12GB: enforce 12GB Dalvik/USAP/JIT values.
-# runtime_libart.mk sets dalvik.vm.usap_pool_enabled?=false earlier,
-# so weak ?= assignments from the 12GB heap makefile are not enough.
-PRODUCT_PRODUCT_PROPERTIES += \
-    dalvik.vm.heapstartsize=24m \
-    dalvik.vm.heapgrowthlimit=512m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=8m \
-    dalvik.vm.heapmaxfree=96m \
-    dalvik.vm.foreground-heap-growth-multiplier=1.0 \
-    dalvik.vm.enable_time_based_gc_trigger=true \
-    dalvik.vm.jitmaxsize=512m \
-    dalvik.vm.jitinitialsize=64m \
-    dalvik.vm.jitthreshold=5000 \
-    dalvik.vm.jitwarmupthreshold=2500 \
-    dalvik.vm.jitpthreadpriority=8 \
-    dalvik.vm.parallel-image-loading=true \
-    dalvik.vm.usap_pool_enabled=true \
-    dalvik.vm.usap_pool_size_min=1 \
-    dalvik.vm.usap_pool_size_max=5 \
-    dalvik.vm.usap_refill_threshold=1 \
-    dalvik.vm.usap_pool_refill_delay_ms=3000
+# Both fuxi variants use the stock 8GB Dalvik heap profile. Stock
+# OS3.0.307.0 uses the 8GB values (256m heap growth limit, 0.5 target
+# utilization, 32m max free) even on the 12GB variant. The 12GB profile
+# (512m heap, USAP pool, 512m JIT cache, 100MB vdex madvise) is too
+# aggressive for the 8GB variant and causes extra reclaim and ANRs.
+$(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)

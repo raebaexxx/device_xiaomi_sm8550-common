@@ -723,10 +723,11 @@ vendor/etc/permissions/vendor.qti.hardware.factory.xml
 vendor/lib64/vendor.qti.hardware.factory@1.0.so
 vendor/lib64/vendor.qti.hardware.factory@1.1.so
 
-# MiCharge HAL (stock OS3.0.307.0)
+# MiCharge HAL (stock OS3.0.307.0). The VINTF fragment stays in
+# DEVICE_MANIFEST_FILE; installing it as a vendor fragment duplicates the
+# HAL in the merged manifest and fails checkvintf.
 vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service
 vendor/etc/init/vendor.xiaomi.hardware.micharge@1.0-service.rc
-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.micharge@1.0.xml
 vendor/lib64/hw/vendor.xiaomi.hardware.micharge@1.0-impl.so
 vendor/lib64/vendor.xiaomi.hardware.micharge@1.0.so
 

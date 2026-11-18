@@ -67,15 +67,23 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('pipe2: 1'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
+    (
+        'vendor/bin/hw/vendor.qti.media.c2@1.0-service',
+        'vendor/bin/hw/vendor.qti.media.c2audio@1.0-service',
+    ): blob_fixup()
+        # Android 17's ComponentStore is 0x120 bytes, but these services
+        # still allocate the Android 16 size (0x108) and overflow RefBase.
+        # Raise the movz immediate to 0x120.
+        .binary_regex_replace(b'\x00\x21\x80\x52', b'\x00\x24\x80\x52'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
     (
         'vendor/bin/hw/android.hardware.contexthub-service.qmi',
         'vendor/lib64/libstfactory-vendor.so',
         'odm/lib64/nfc_nci.nqx.default.hw.so'
-    'vendor/etc/media_codecs_kalama.xml': blob_fixup()
-       'vendor/etc/media_codecs_kalama.xml',
     ): blob_fixup()
+        .add_needed('libbase_shim.so'),
+    'vendor/etc/media_codecs_kalama.xml': blob_fixup()
         # This is the file media_server actually parses, not media_codecs.xml.
         # init.qti.media.sh sets vendor.media.target_variant to _kalama on this
         # platform, init.qcom.rc mirrors that into ro.media.xml_variant.codecs,
@@ -94,7 +102,7 @@ blob_fixups: blob_fixups_user_type = {
         # decoders themselves are reached through IComponentStore/default1, and
         # the encoder through IComponentStore/dolby, both declared by
         # device/xiaomi/sm8550-common-dolby.
-        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', '')
+        .regex_replace('.+media_codecs_(dolby_audio|google_audio|google_c2|google_telephony|vendor_audio).+\n', '')
         .regex_replace(
             r'(?m)^([ \t]*)<Include href="media_codecs_c2_audio\.xml"[ \t]*/>[ \t]*$',
             r'\1<Include href="media_codecs_c2_audio.xml" />\n'

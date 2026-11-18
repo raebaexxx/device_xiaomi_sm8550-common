@@ -584,15 +584,19 @@ KernelVersionB=${KernelVersionS%.*}
 function configure_zram_parameters() {
     MemTotalStr=`cat /proc/meminfo | grep MemTotal`
     MemTotal=${MemTotalStr:16:8}
+    low_ram=`getprop ro.config.low_ram`
 
     # Zram disk - 75% for Go devices.
     # For 512MB Go device, size = 384MB, set same for Non-Go.
     # For 1GB Go device, size = 768MB, set same for Non-Go.
     # For 2GB Go device, size = 1536MB, set same for Non-Go.
     # For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 6GB.
-    # Use lz4 for all targets: cheaper on CPU than lzo-rle.
+    # Xiaomi MemTotal is lower than the marketing size: use +2 so that the
+    # 8GB variant maps to 8GB and the 12GB variant maps to 12GB, like stock.
+    # Keep lzo-rle on 8GB (better ratio, less RAM spent on zram) and use lz4
+    # only on Go devices and >=12GB devices.
 
-    let RamSizeGB="( $MemTotal / 1048576 ) + 1"
+    let RamSizeGB="( $MemTotal / 1048576 ) + 2"
     diskSizeUnit=M
     if [ $RamSizeGB -le 2 ]; then
         let zRamSizeMB="( $RamSizeGB * 1024 ) * 3 / 4"
@@ -605,7 +609,7 @@ function configure_zram_parameters() {
         let zRamSizeMB=6144
     fi
 
-    if [ -f /sys/block/zram0/comp_algorithm ]; then
+    if [ "$low_ram" == "true" ] || [ $RamSizeGB -ge 10 ]; then
         echo lz4 > /sys/block/zram0/comp_algorithm 2>/dev/null
     fi
 
@@ -649,6 +653,20 @@ function configure_read_ahead_kb_values() {
         for dm in $dmpts; do
             echo 512 > $dm
         done
+    fi
+}
+
+function set_vm_swappiness() {
+    # Stock Qualcomm uses 100 with zram. Keep that on 8GB so cold anonymous
+    # pages go to zram instead of evicting file cache; only the 12GB variant
+    # uses the less aggressive 70.
+    MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+    MemTotal=${MemTotalStr:16:8}
+    let RamSizeGB="( $MemTotal / 1048576 ) + 2"
+    if [ $RamSizeGB -ge 10 ]; then
+        echo 70 > /proc/sys/vm/swappiness
+    else
+        echo 100 > /proc/sys/vm/swappiness
     fi
 }
 
@@ -710,7 +728,7 @@ if [ "$ProductName" == "msmnile" ] || [ "$ProductName" == "kona" ] || [ "$Produc
       configure_zram_parameters
       configure_read_ahead_kb_values
       echo 0 > /proc/sys/vm/page-cluster
-      echo 70 > /proc/sys/vm/swappiness
+      set_vm_swappiness
 else
     arch_type=`uname -m`
 
@@ -813,9 +831,9 @@ else
     fi
 
     # Set allocstall_threshold to 0 for all targets.
-    # Set swappiness to 70 for all targets
+    # Set swappiness: stock 100 on 8GB, 70 on the 12GB variant.
     echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
-    echo 70 > /proc/sys/vm/swappiness
+    set_vm_swappiness
 
     # Disable wsf for all targets beacause we are using efk.
     # wsf Range : 1..1000 So set to bare minimum value 1.
@@ -4262,7 +4280,7 @@ case "$target" in
 
             # Turn on sleep modes.
             echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
-            echo 70 > /proc/sys/vm/swappiness
+            set_vm_swappiness
             ;;
         esac
     ;;
@@ -4816,7 +4834,7 @@ case "$target" in
 	echo N > /sys/module/lpm_levels/L3/l3-dyn-ret/idle_enabled
         # Turn on sleep modes.
         echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
-	echo 70 > /proc/sys/vm/swappiness
+	set_vm_swappiness
 	echo 120 > /proc/sys/vm/watermark_scale_factor
     ;;
 esac

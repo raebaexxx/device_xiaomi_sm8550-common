@@ -33,13 +33,16 @@
 function configure_zram_parameters() {
 	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
 	MemTotal=${MemTotalStr:16:8}
+	low_ram=`getprop ro.config.low_ram`
 
 	# Zram disk - 75% for Go and < 2GB devices .
 	# For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 6GB.
-	# Use lz4 zram compression for all targets: it is much cheaper on CPU
-	# than the default lzo-rle while still giving a good compression ratio.
+	# Xiaomi MemTotal is lower than the marketing size: use +2 so that the
+	# 8GB variant maps to 8GB and the 12GB variant maps to 12GB, like stock.
+	# Keep lzo-rle on 8GB (better ratio, less RAM spent on zram) and use lz4
+	# only on Go devices and >=12GB devices.
 
-	let RamSizeGB="( $MemTotal / 1048576 ) + 1"
+	let RamSizeGB="( $MemTotal / 1048576 ) + 2"
 	diskSizeUnit=M
 	if [ $RamSizeGB -le 2 ]; then
 		let zRamSizeMB="( $RamSizeGB * 1024 ) * 3 / 4"
@@ -52,7 +55,7 @@ function configure_zram_parameters() {
 		let zRamSizeMB=6144
 	fi
 
-	if [ -f /sys/block/zram0/comp_algorithm ]; then
+	if [ "$low_ram" == "true" ] || [ $RamSizeGB -ge 10 ]; then
 		echo lz4 > /sys/block/zram0/comp_algorithm 2>/dev/null
 	fi
 
@@ -127,7 +130,18 @@ function configure_memory_parameters() {
 
 	configure_zram_parameters
 	configure_read_ahead_kb_values
-	echo 70 > /proc/sys/vm/swappiness
+
+	# Stock Qualcomm uses 100 with zram. Keep that on 8GB so cold anonymous
+	# pages go to zram instead of evicting file cache; only the 12GB variant
+	# uses the less aggressive 70.
+	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+	MemTotal=${MemTotalStr:16:8}
+	let RamSizeGB="( $MemTotal / 1048576 ) + 2"
+	if [ $RamSizeGB -ge 10 ]; then
+		echo 70 > /proc/sys/vm/swappiness
+	else
+		echo 100 > /proc/sys/vm/swappiness
+	fi
 
 	# Disable periodic kcompactd wakeups. We do not use THP, so having many
 	# huge pages is not as necessary.
@@ -139,10 +153,6 @@ function configure_memory_parameters() {
 	if [ -f /sys/kernel/mm/transparent_hugepage/enabled ]; then
 		echo never > /sys/kernel/mm/transparent_hugepage/enabled
 	fi
-
-	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-	MemTotal=${MemTotalStr:16:8}
-	let RamSizeGB="( $MemTotal / 1048576 ) + 1"
 
 	# Set the min_free_kbytes to standard kernel value
 	if [ $RamSizeGB -ge 8 ]; then

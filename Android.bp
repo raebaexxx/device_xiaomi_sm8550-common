@@ -43,6 +43,20 @@ install_symlink {
 }
 
 cc_library_shared {
+    name: "libwfdcompat",
+    system_ext_specific: true,
+    srcs: [
+        "wfd-compat/wfd_compat.cpp",
+    ],
+    shared_libs: [
+        "libbinder",
+        "libgui",
+        "libui",
+        "libutils",
+    ],
+}
+
+cc_library_shared {
     name: "libqti_c2_store_abi_check",
     vendor: true,
     defaults: ["libcodec2-hidl-defaults@1.0"],

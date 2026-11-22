@@ -55,7 +55,12 @@ blob_fixups: blob_fixups_user_type = {
     # symbols, so drop the separate dependency instead of backporting the
     # split.
     'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
-        .remove_needed('libaudiobase.so'),
+        .remove_needed('libaudiobase.so')
+        # The blob calls the pre-Android 16 libgui virtual display and
+        # display surface APIs, and the old libc++ __hash_memory helper.
+        .add_needed('libwfdcompat.so'),
+    'system_ext/lib64/libwfdconfigutils.so': blob_fixup()
+        .add_needed('libwfdcompat.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
         .remove_needed('libaudiobase.so'),
     'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()

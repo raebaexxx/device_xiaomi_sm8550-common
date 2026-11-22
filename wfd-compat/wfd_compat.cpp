@@ -13,6 +13,7 @@
  *   SurfaceComposerClient::Transaction::setDisplaySurface(sp<IBinder>, sp<Surface>)
  *   SurfaceComposerClient::createVirtualDisplay(..., uint32_t, float)
  *   std::__1::__hash_memory()
+ *   BBinder::setTransactionCodeMap(const TransactionCodeData*)
  */
 
 #include <cstddef>
@@ -36,6 +37,17 @@ WFD_COMPAT_EXPORT size_t __hash_memory(const void* data, size_t size) noexcept {
 
 }  // namespace __1
 }  // namespace std
+
+/*
+ * The stock blobs register transaction code names on their Bn* classes with
+ * this old libbinder API. The table is only used to make binder errors more
+ * readable, so ignoring it leaves the transactions themselves unchanged.
+ */
+WFD_COMPAT_EXPORT void WFDCompat_setTransactionCodeMap(
+        void* /* binder */, const void* /* transactionCodeMap */)
+        asm("_ZN7android7BBinder21setTransactionCodeMapEPKNS_19TransactionCodeDataE");
+
+void WFDCompat_setTransactionCodeMap(void*, const void*) {}
 
 WFD_COMPAT_EXPORT android::status_t WFDCompat_setDisplaySurface(
         android::SurfaceComposerClient::Transaction* transaction,

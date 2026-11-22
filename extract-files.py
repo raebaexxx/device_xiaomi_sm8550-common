@@ -61,6 +61,10 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libwfdcompat.so'),
     'system_ext/lib64/libwfdconfigutils.so': blob_fixup()
         .add_needed('libwfdcompat.so'),
+    'system_ext/lib64/libwfdnative.so': blob_fixup()
+        # The blob registers transaction code names through an old BBinder
+        # API that current libbinder no longer exports.
+        .add_needed('libwfdcompat.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
         .remove_needed('libaudiobase.so'),
     'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()

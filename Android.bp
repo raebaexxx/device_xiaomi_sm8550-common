@@ -54,6 +54,7 @@ cc_library_shared {
         "libui",
         "libutils",
     ],
+    version_script: "wfd-compat/libbinder.map",
 }
 
 cc_library_shared {

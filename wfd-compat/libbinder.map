@@ -1,0 +1,4 @@
+LIBBINDER {
+  global:
+    _ZN7android7BBinder21setTransactionCodeMapEPKNS_19TransactionCodeDataE;
+};

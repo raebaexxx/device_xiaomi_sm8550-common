@@ -50,8 +50,14 @@ lib_fixups: lib_fixups_user_type = {
 blob_fixups: blob_fixups_user_type = {
     'system/framework/WfdCommon.jar': blob_fixup()
         .apktool_patch('blob-patches/WfdCommon.patch'),
+    # The stock WFD blobs were built against the split libaudiobase library.
+    # Lunaris' libaudioclient is still monolithic and exports the same
+    # symbols, so drop the separate dependency instead of backporting the
+    # split.
+    'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
+        .remove_needed('libaudiobase.so'),
     'system_ext/lib64/libwfdservice.so': blob_fixup()
-        .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
+        .remove_needed('libaudiobase.so'),
     'system_ext/lib64/vendor.qti.hardware.qccsyshal@1.2-halimpl.so': blob_fixup()
         .replace_needed('libprotobuf-cpp-full.so', 'libprotobuf-cpp-full-21.7.so'),
     'odm/lib64/libmt@1.3.so': blob_fixup()

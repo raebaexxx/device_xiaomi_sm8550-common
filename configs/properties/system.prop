@@ -1,6 +1,15 @@
 # CameraX
 ro.camerax.extensions.enabled=true
 
+# Audio
+# System audio properties must live in /system/build.prop: vendor_init is not
+# allowed to set default_prop from /vendor/build.prop.
+audio.sys.noisy.broadcast.delay=600
+audio.sys.offload.pstimeout.secs=3
+
+# Bluetooth
+bluetooth.auto_connect_profiles.enabled=true
+
 # HWUI
 debug.hwui.skia_tracing_enabled=false
 debug.hwui.skia_use_perfetto_track_events=false

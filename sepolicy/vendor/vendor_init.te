@@ -1,6 +1,11 @@
 set_prop(vendor_init, vendor_nfc_mi_prop)
 set_prop(vendor_init, vendor_fp_prop)
 
+# qcrilNrd.rc uses on property:persist.radio.restart_rild=... triggers, but
+# AOSP neverallow prevents vendor_init from reading radio_prop. This is a
+# debug-only rild restart hook; keep the known denial out of the audit log.
+dontaudit vendor_init radio_prop:file read;
+
 # Properties loaded from odm.prop and init.sm8550.rc
 set_prop(vendor_init, vendor_ssr_prop)
 set_prop(vendor_init, vendor_qcc_prop)

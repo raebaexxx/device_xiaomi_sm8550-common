@@ -1,0 +1,3 @@
+# The audio HAL probes /sys/kernel/debug for optional debug nodes. debugfs is
+# not mounted on user builds; the probe is harmless, so keep it out of audit.
+dontaudit hal_audio_default sysfs:dir read;

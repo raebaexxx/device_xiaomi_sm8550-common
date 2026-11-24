@@ -244,9 +244,8 @@ on property:sys.boot_completed=1
     write /dev/kmsg "start qrtr-lookup after Boot completed "
     start qrtr-lookup
 
-    # for online boot cpu
-    wait /sys/class/thermal/thermal_message/boot_complete
-    write /sys/class/thermal/thermal_message/boot_complete 2
+    # Our kernel's thermal_message driver has no boot_complete attribute,
+    # so there is nothing to wait for or write here.
 
     # Use the normal thermal profile (was 19/mgame): no games on this device
     write /sys/devices/virtual/thermal/thermal_message/sconfig 0

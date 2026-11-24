@@ -1,0 +1,5 @@
+# The QCOM sm8550 policy keeps vendor_bt_data_file access inside
+# userdebug_or_eng(), so the Bluetooth HAL cannot use /data/vendor/bluetooth
+# on user builds. Grant the same access unconditionally.
+allow hal_bluetooth_default vendor_bt_data_file:dir rw_dir_perms;
+allow hal_bluetooth_default vendor_bt_data_file:file create_file_perms;

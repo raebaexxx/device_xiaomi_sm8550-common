@@ -93,14 +93,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/sku_kalama/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/sku_kalama/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_policy_configuration.xml
 
-# Xiaomi's libspatializer.so loads its HRTF from the hardcoded path
-# /vendor/etc/hrtf5c.bin.  The blob is shipped under /odm/etc/audio, and the
-# stock vendor image exposed it at the vendor path as well (the vendor file
-# was not captured by the blob extractor).  Without it the misound spatial
-# engine dereferences a null config buffer and the audio HAL crash loops.
-PRODUCT_COPY_FILES += \
-    vendor/xiaomi/sm8550-common/proprietary/odm/etc/audio/hrtf5c.bin:$(TARGET_COPY_OUT_VENDOR)/etc/hrtf5c.bin
-
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/bluetooth_qti_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_qti_audio_policy_configuration.xml \
     hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
